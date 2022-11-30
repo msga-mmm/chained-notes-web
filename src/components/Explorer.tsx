@@ -25,7 +25,7 @@ export default () => {
         </div>
         <div flex="~ col" space="y-2px">
           {notes.map((note) => (
-            <Link hover="op70" key={note.id} to={`/note/${note.id}`}>
+            <Link hover="op70" key={note.id} to={`${import.meta.env.BASE_URL}note/${note.id}/`}>
               {note.title}
             </Link>
           ))}

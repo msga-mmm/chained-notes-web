@@ -30,7 +30,7 @@ export default (props: IErrorPage) => {
       <p mt="6px">
         <i>{message}</i>
       </p>
-      <Link to="/">
+      <Link to={`${import.meta.env.BASE_URL}`}>
         <button btn="main" p="y-.4rem x-1rem" m="t-2rem">
           home
         </button>

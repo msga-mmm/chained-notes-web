@@ -35,7 +35,7 @@ export default (props: IProps) => {
       body: "",
     };
     dispatch(add(note));
-    navigate("/note/" + note.id);
+    navigate(`${import.meta.env.BASE_URL}note/${note.id}`);
   };
 
   return (
