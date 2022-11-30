@@ -5,12 +5,12 @@ import NotePage from "./routes/NotePage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `${import.meta.env.BASE_URL}`,
     element: <Root />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/note/:id",
+    path: `${import.meta.env.BASE_URL}note/:id/`,
     element: <NotePage />,
     errorElement: <ErrorPage />,
   },
