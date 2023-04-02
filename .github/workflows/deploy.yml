@@ -11,9 +11,16 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+
       - name: Install Bun
-        run: curl -fsSL https://bun.sh/install | bash
+        run: npm install -g bun
+
       - name: Install packages
         run: bun install
+
       - name: Build and Deploy
-        run: bun deploy
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
