@@ -9,6 +9,11 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: `${import.meta.env.BASE_URL}note/:id/`,
+    element: <NotePage />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 export default () => {
