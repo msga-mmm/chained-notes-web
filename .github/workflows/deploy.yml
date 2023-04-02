@@ -15,4 +15,4 @@ jobs:
     - name: Install packages
       run: bun install
     - name: Build and Deploy
-      run: bun run deploy
+      run: bun deploy
