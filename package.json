@@ -12,7 +12,8 @@
     "build": "vite build",
     "build-refresh": "cross-env USE_REFRESH=true vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@lexical/react": "^0.10.0",
@@ -45,6 +46,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
     "jest": "^29.5.0",
+    "prettier": "^2.8.8",
     "typescript": "^5.0.4",
     "unocss": "^0.51.8",
     "vite": "^4.3.3",
