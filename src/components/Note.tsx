@@ -23,7 +23,13 @@ export default ({ note, updateNote }: IProps) => {
           handleChange={(title) => updateNote({ ...note, title })}
           class="b-none text-26px font-bold w-full focus:outline-none mb-1rem"
         />
-        <Link to={`${import.meta.env.BASE_URL}`} bg="main-red" p="4px" m="auto" rounded="full">
+        <Link
+          to={`${import.meta.env.BASE_URL}`}
+          bg="main-red"
+          p="4px"
+          m="auto"
+          rounded="full"
+        >
           <div className="i-akar-icons:arrow-back" m="5px" bg="white"></div>
         </Link>
       </div>
