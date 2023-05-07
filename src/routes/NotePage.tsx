@@ -6,7 +6,7 @@ import Note from "src/components/Note";
 import { INote, selectNotes, edit } from "src/features/notes/notesSlice";
 import ErrorPage from "./ErrorPage";
 
-export default () => {
+export default function NotePage() {
   const { id } = useParams();
   const notes = selectNotes();
   const dispatch = useAppDispatch();
@@ -36,4 +36,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

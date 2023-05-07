@@ -7,7 +7,7 @@ interface IProps {
   updateNote: (note: INote) => void;
 }
 
-export default ({ note, updateNote }: IProps) => {
+export default function Note({ note, updateNote }: IProps) {
   return (
     <div
       flex="~ col"
@@ -40,4 +40,4 @@ export default ({ note, updateNote }: IProps) => {
       />
     </div>
   );
-};
+}

@@ -1,7 +1,7 @@
 import CreateNote from "src/components/CreateNote";
 import Explorer from "src/components/Explorer";
 
-export default () => {
+export default function Root() {
   return (
     <div flex="~" h="100vh">
       <Explorer />
@@ -10,4 +10,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

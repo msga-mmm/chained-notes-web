@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { selectNotes } from "src/features/notes/notesSlice";
 import CreateNote from "./CreateNote";
 
-export default () => {
+export default function Explorer() {
   const notes = selectNotes();
 
   return (
@@ -37,4 +37,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

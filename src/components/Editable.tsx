@@ -33,7 +33,7 @@ interface IProps {
   class: string;
 }
 
-export default (props: IProps) => {
+export default function Editable(props: IProps) {
   const initialConfig = {
     namespace: `editable-${nanoid()}`,
     onError,
@@ -61,4 +61,4 @@ export default (props: IProps) => {
       />
     </LexicalComposer>
   );
-};
+}

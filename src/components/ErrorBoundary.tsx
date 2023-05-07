@@ -3,6 +3,6 @@ interface IProps {
   onError: (error: Error) => void;
 }
 
-export default (props: IProps) => {
+export default function ErrorBoundary(props: IProps) {
   return <>{props.children}</>;
-};
+}

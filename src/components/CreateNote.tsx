@@ -23,7 +23,7 @@ interface IProps {
   class?: string;
 }
 
-export default (props: IProps) => {
+export default function CreateNote(props: IProps) {
   const dispatch = useAppDispatch();
   const notes = selectNotes();
   const navigate = useNavigate();
@@ -43,4 +43,4 @@ export default (props: IProps) => {
       {props.children}
     </button>
   );
-};
+}

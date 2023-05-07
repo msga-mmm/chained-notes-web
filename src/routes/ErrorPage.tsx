@@ -10,7 +10,7 @@ interface IErrorPage {
   error?: string;
 }
 
-export default (props: IErrorPage) => {
+export default function ErrorPage(props: IErrorPage) {
   const routeError = useRouteError() as IError;
   const message = props.error || routeError.statusText || routeError.message;
 
@@ -37,4 +37,4 @@ export default (props: IErrorPage) => {
       </Link>
     </div>
   );
-};
+}
