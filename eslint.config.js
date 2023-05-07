@@ -33,6 +33,8 @@ export default [
     },
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     rules: {
+      "no-console": ["error"],
+
       // react +17 doesn't need to have react imported
       "react/react-in-jsx-scope": ["off"],
       "react/button-has-type": ["error"],
