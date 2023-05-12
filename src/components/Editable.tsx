@@ -14,7 +14,7 @@ import { nanoid } from "nanoid";
 import ErrorBoundary from "./ErrorBoundary";
 
 function onError(error: Error) {
-  console.error(error);
+  alert(`Error initializing text editor: ${error.cause}`);
 }
 
 function getContent(editorState: EditorState, _editor: LexicalEditor) {
