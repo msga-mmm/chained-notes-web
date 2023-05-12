@@ -39,7 +39,7 @@ export default function CreateNote(props: IProps) {
   };
 
   return (
-    <button className={props.class} btn="main" onClick={handleClick}>
+    <button className={props.class} btn="main" type="button" onClick={handleClick}>
       {props.children}
     </button>
   );

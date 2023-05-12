@@ -31,7 +31,7 @@ export default function ErrorPage(props: IErrorPage) {
         <i>{message}</i>
       </p>
       <Link to={`${import.meta.env.BASE_URL}`}>
-        <button btn="main" p="y-.4rem x-1rem" m="t-2rem">
+        <button btn="main" p="y-.4rem x-1rem" m="t-2rem" type="button">
           home
         </button>
       </Link>
