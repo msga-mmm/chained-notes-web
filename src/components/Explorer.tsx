@@ -40,7 +40,7 @@ export default function Explorer() {
         <div className={classNames("flex", "flex-col", "space-y-2px")}>
           {notes.map((note) => (
             <Link
-							className={classNames("hover-op70")}
+              className={classNames("hover-op70")}
               key={note.id}
               to={`${import.meta.env.BASE_URL}note/${note.id}/`}
             >
