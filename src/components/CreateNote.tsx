@@ -7,6 +7,7 @@ import {
 } from "src/features/notes/notesSlice";
 import { useAppDispatch } from "src/app/hooks";
 import { nanoid } from "nanoid";
+import classNames from "classnames";
 
 function newTitle(notes: INotesState) {
   let title = "untitled";
@@ -20,10 +21,10 @@ function newTitle(notes: INotesState) {
 
 interface IProps {
   children: string | JSX.Element;
-  class?: string;
+  className?: string;
 }
 
-export default (props: IProps) => {
+export default function CreateNote(props: IProps) {
   const dispatch = useAppDispatch();
   const notes = selectNotes();
   const navigate = useNavigate();
@@ -39,8 +40,12 @@ export default (props: IProps) => {
   };
 
   return (
-    <button className={props.class} btn="main" onClick={handleClick}>
+    <button
+      className={classNames(props.className, "btn-main")}
+      type="button"
+      onClick={handleClick}
+    >
       {props.children}
     </button>
   );
-};
+}

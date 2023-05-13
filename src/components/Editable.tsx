@@ -14,7 +14,7 @@ import { nanoid } from "nanoid";
 import ErrorBoundary from "./ErrorBoundary";
 
 function onError(error: Error) {
-  console.error(error);
+  alert(`Error initializing text editor: ${error.cause}`);
 }
 
 function getContent(editorState: EditorState, _editor: LexicalEditor) {
@@ -30,10 +30,10 @@ function getContent(editorState: EditorState, _editor: LexicalEditor) {
 interface IProps {
   content: string;
   handleChange: (content: string) => void;
-  class: string;
+  className: string;
 }
 
-export default (props: IProps) => {
+export default function Editable(props: IProps) {
   const initialConfig = {
     namespace: `editable-${nanoid()}`,
     onError,
@@ -49,7 +49,7 @@ export default (props: IProps) => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <PlainTextPlugin
-        contentEditable={<ContentEditable className={props.class} />}
+        contentEditable={<ContentEditable className={props.className} />}
         placeholder={<></>}
         ErrorBoundary={ErrorBoundary}
       />
@@ -61,4 +61,4 @@ export default (props: IProps) => {
       />
     </LexicalComposer>
   );
-};
+}
