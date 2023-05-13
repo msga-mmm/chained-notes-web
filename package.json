@@ -13,6 +13,8 @@
     "build-refresh": "cross-env USE_REFRESH=true vite build",
     "preview": "vite preview",
     "lint": "eslint .",
+    "check": "bun run lint && bun run format:check",
+    "format:check": "prettier --check .",
     "format": "prettier --write ."
   },
   "dependencies": {
