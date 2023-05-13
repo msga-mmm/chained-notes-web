@@ -16,7 +16,7 @@ export default defineConfig({
       theme: {
         colors: {
           main: {
-            red: "rgb(235, 36, 0)",
+            red: "rgb(235, 36, 0) !important",
           },
         },
       },
