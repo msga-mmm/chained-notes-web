@@ -30,7 +30,7 @@ function getContent(editorState: EditorState, _editor: LexicalEditor) {
 interface IProps {
   content: string;
   handleChange: (content: string) => void;
-  class: string;
+  className: string;
 }
 
 export default function Editable(props: IProps) {
@@ -49,7 +49,7 @@ export default function Editable(props: IProps) {
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <PlainTextPlugin
-        contentEditable={<ContentEditable className={props.class} />}
+        contentEditable={<ContentEditable className={props.className} />}
         placeholder={<></>}
         ErrorBoundary={ErrorBoundary}
       />

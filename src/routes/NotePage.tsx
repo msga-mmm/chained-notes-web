@@ -5,6 +5,7 @@ import Explorer from "src/components/Explorer";
 import Note from "src/components/Note";
 import { INote, selectNotes, edit } from "src/features/notes/notesSlice";
 import ErrorPage from "./ErrorPage";
+import classNames from "classnames";
 
 export default function NotePage() {
   const { id } = useParams();
@@ -25,9 +26,16 @@ export default function NotePage() {
   }, [id]);
 
   return (
-    <div flex="~" min-h="100vh">
+    <div className={classNames("flex", "min-h-100vh")}>
       <Explorer />
-      <div flex="~" w="full" justify="center" items="center">
+      <div
+        className={classNames(
+          "flex",
+          "w-full",
+          "justify-center",
+          "items-center"
+        )}
+      >
         {note != undefined ? (
           <Note note={note} updateNote={updateNote} key={note.id} />
         ) : (
