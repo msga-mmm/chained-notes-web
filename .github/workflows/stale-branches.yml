@@ -18,4 +18,4 @@ jobs:
           days-before-stale: 0.003
           days-before-delete: 210
           stale-branch-label: "stale branch"
-          branches-filter-regex: "^((?>stale-branch-test))"
+          branches-filter-regex: "^stale-branch-test"
