@@ -2,8 +2,7 @@ name: Stale Branches
 
 on:
   schedule:
-    # - cron: '* 12 * * 1-5'
-    - cron: "2 * * * *"
+    - cron: "*/2 * * * *"
 
 permissions:
   issues: write
