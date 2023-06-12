@@ -3,6 +3,9 @@ name: Stale Branches
 on:
   schedule:
     - cron: "20 * * * *"
+  pull_request:
+    branches:
+      - main
 
 permissions:
   issues: write
