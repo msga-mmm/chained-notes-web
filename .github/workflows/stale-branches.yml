@@ -15,6 +15,6 @@ jobs:
         uses: crs-k/stale-branches@v3.0.0
         with:
           days-before-stale: 1
-          days-before-delete: 200
+          days-before-delete: 29
           stale-branch-label: "stale branch"
           branches-filter-regex: "fix/no-ref/solve-linter-issues"
