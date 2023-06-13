@@ -15,6 +15,6 @@ jobs:
         uses: crs-k/stale-branches@v3.0.0
         with:
           days-before-stale: 0.003
-          days-before-delete: 0.006
+          days-before-delete: 0.007
           stale-branch-label: "stale branch"
           branches-filter-regex: "stale-branch-test"
