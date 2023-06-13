@@ -3,9 +3,6 @@ name: Stale Branches
 on:
   push:
 
-permissions:
-  issues: write
-
 jobs:
   stale_branches:
     runs-on: ubuntu-latest
@@ -17,4 +14,4 @@ jobs:
           days-before-stale: 0.003
           days-before-delete: 0.006
           stale-branch-label: "stale branch"
-          branches-filter-regex: "^stale-branch-test"
+          branches-filter-regex: "stale-branch-test"
