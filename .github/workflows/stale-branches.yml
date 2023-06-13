@@ -19,6 +19,6 @@ jobs:
           # token for full permissions
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           days-before-stale: 1
-          days-before-delete: 20
+          days-before-delete: 21
           stale-branch-label: "stale branch"
           branches-filter-regex: "feat/no-ref/setup-prettier-for-code-formatting"
