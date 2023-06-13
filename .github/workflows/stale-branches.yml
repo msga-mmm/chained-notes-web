@@ -4,7 +4,10 @@ on:
   push:
 
 permissions:
-  contents: write
+  # permission to create the issue for stale branches
+  issues: write
+  # permission to delete branches
+  # contents: write
 
 jobs:
   stale_branches:
