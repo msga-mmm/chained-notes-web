@@ -3,6 +3,10 @@ name: Stale Branches
 on:
   push:
 
+permissions:
+  issues: write
+  contents: write
+
 jobs:
   stale_branches:
     runs-on: ubuntu-latest
@@ -10,7 +14,6 @@ jobs:
       - name: Stale Branches
         uses: crs-k/stale-branches@v3.0.0
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
           days-before-stale: 0.003
           days-before-delete: 0.006
           stale-branch-label: "stale branch"
