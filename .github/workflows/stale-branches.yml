@@ -3,11 +3,11 @@ name: Stale Branches
 on:
   push:
 
-permissions:
-  # permission to create the issue for stale branches
-  issues: write
-  # permission to delete branches
-  # contents: write
+# permissions:
+#   # permission to create the issue for stale branches
+#   issues: write
+#   # permission to delete branches
+#   contents: write
 
 jobs:
   stale_branches:
@@ -16,6 +16,8 @@ jobs:
       - name: Stale Branches
         uses: crs-k/stale-branches@v3.0.0
         with:
+          # token for full permissions
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
           days-before-stale: 1
           days-before-delete: 20
           stale-branch-label: "stale branch"
