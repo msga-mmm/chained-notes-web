@@ -1,8 +1,9 @@
 name: Stale Branches
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 0 1 * *"
 
 permissions:
   issues: write
@@ -15,8 +16,7 @@ jobs:
       - name: Stale Branches
         uses: crs-k/stale-branches@v3.0.0
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          days-before-stale: 0.003
-          days-before-delete: 0.006
+          max-issues: 1000
+          days-before-stale: 60
+          days-before-delete: 90
           stale-branch-label: "stale branch"
-          branches-filter-regex: "^stale-branch-test"
