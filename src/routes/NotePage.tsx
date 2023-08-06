@@ -13,7 +13,7 @@ export default function NotePage() {
   const dispatch = useAppDispatch();
 
   const [note, setNote] = useState(
-    notes.filter((note) => note.id === id).at(0)
+    notes.filter((note) => note.id === id).at(0),
   );
 
   const updateNote = (note: INote) => {
@@ -33,7 +33,7 @@ export default function NotePage() {
           "flex",
           "w-full",
           "justify-center",
-          "items-center"
+          "items-center",
         )}
       >
         {note != undefined ? (

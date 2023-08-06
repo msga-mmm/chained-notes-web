@@ -18,7 +18,7 @@ export default function Note({ note, updateNote }: IProps) {
         "w-100%",
         "h-100vh",
         "box-border",
-        "overflow-y-auto"
+        "overflow-y-auto",
       )}
     >
       <div className={classNames("flex", "flex-row")}>
@@ -31,7 +31,7 @@ export default function Note({ note, updateNote }: IProps) {
             "font-bold",
             "w-full",
             "focus:outline-none",
-            "mb-1rem"
+            "mb-1rem",
           )}
         />
         <Link
@@ -40,14 +40,14 @@ export default function Note({ note, updateNote }: IProps) {
             "bg-main-red",
             "p-4px",
             "m-auto",
-            "rounded-full"
+            "rounded-full",
           )}
         >
           <div
             className={classNames(
               "i-akar-icons:arrow-back",
               "m-5px",
-              "bg-white"
+              "bg-white",
             )}
           ></div>
         </Link>
@@ -60,7 +60,7 @@ export default function Note({ note, updateNote }: IProps) {
           "text-16px",
           "h-100%",
           "box-border",
-          "focus:outline-none"
+          "focus:outline-none",
         )}
       />
     </div>

@@ -24,7 +24,7 @@ export default function ErrorPage(props: IErrorPage) {
         "items-center",
         "m-auto",
         "w-full",
-        "h-100vh"
+        "h-100vh",
       )}
     >
       <h1 className={classNames("text-35px", "font-bold", "mb-18px")}>Oops!</h1>
