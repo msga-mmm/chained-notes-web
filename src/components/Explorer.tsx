@@ -14,7 +14,7 @@ export default function Explorer() {
         "box-border",
         "bg-gray-900",
         "p-1rem",
-        "overflow-y-auto"
+        "overflow-y-auto",
       )}
     >
       <div>
@@ -31,7 +31,7 @@ export default function Explorer() {
               "h-22px",
               "w-22px",
               "justify-center",
-              "items-center"
+              "items-center",
             )}
           >
             +

@@ -11,7 +11,7 @@ export default function Root() {
           "flex",
           "items-center",
           "justify-center",
-          "w-full"
+          "w-full",
         )}
       >
         <CreateNote>new note</CreateNote>
