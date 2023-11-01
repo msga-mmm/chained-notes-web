@@ -2,6 +2,8 @@
 
 A web interface for chained notes.
 
+<img src="docs/demo.png" alt="Chained notes demo" />
+
 ## BUILD PROCESS
 
 ### Dependencies
