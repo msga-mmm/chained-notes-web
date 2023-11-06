@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { selectNotes } from "src/features/notes/notesSlice";
-import CreateNote from "./CreateNote";
+import CreateNote from "./CreateNote/CreateNote";
 import classNames from "classnames";
 
 export default function Explorer() {

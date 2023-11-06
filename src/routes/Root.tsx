@@ -1,4 +1,4 @@
-import CreateNote from "src/components/CreateNote";
+import CreateNote from "src/components/CreateNote/CreateNote";
 import Explorer from "src/components/Explorer";
 import classNames from "classnames";
 
