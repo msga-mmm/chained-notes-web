@@ -5,5 +5,5 @@ import { userEvent } from "@testing-library/user-event";
 
 it("finds button", () => {
   render(<CreateNote>+</CreateNote>);
-  userEvent.click(screen.getByRole("button", { name: "+" }));
+  userEvent.click(screen.getByRole("button", { name: "hello" }));
 });
