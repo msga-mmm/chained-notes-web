@@ -1,12 +1,26 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from "@reduxjs/toolkit";
 
 import notesReducer from "src/features/notes/notesSlice";
 
-export const store = configureStore({
-  reducer: {
-    notes: notesReducer,
-  },
+export const rootReducer = combineReducers({
+  notes: notesReducer,
 });
 
+export const store = configureStore({
+  reducer: rootReducer,
+});
+
+export function setupStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+
 export type RootState = ReturnType<typeof store.getState>;
+export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = typeof store.dispatch;
