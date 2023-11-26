@@ -10,7 +10,6 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { nanoid } from "nanoid";
 import ErrorBoundary from "./ErrorBoundary";
 
 function onError(error: Error) {
@@ -31,11 +30,12 @@ interface IProps {
   content: string;
   handleChange: (content: string) => void;
   className: string;
+  placeholder: JSX.Element;
 }
 
 export default function Editable(props: IProps) {
   const initialConfig = {
-    namespace: `editable-${nanoid()}`,
+    namespace: "editable",
     onError,
     editorState: () => {
       const root = $getRoot();
@@ -48,11 +48,14 @@ export default function Editable(props: IProps) {
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <PlainTextPlugin
-        contentEditable={<ContentEditable className={props.className} />}
-        placeholder={<></>}
-        ErrorBoundary={ErrorBoundary}
-      />
+      <div className="flex flex-col h-full w-full">
+        <PlainTextPlugin
+          contentEditable={<ContentEditable className={props.className} />}
+          placeholder={props.placeholder}
+          ErrorBoundary={ErrorBoundary}
+        />
+      </div>
+
       <OnChangePlugin
         onChange={async (editorState: EditorState, _editor: LexicalEditor) => {
           const content = await getContent(editorState, _editor);

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { INote } from "src/features/notes/notesSlice";
 import Editable from "./Editable";
 import classNames from "classnames";
+import Placeholder from "./Placeholder";
 
 interface IProps {
   note: INote;
@@ -25,6 +26,11 @@ export default function Note({ note, updateNote }: IProps) {
         <Editable
           content={note.title}
           handleChange={(title) => updateNote({ ...note, title })}
+          placeholder={
+            <Placeholder>
+              <p className="text-26px">Add a title</p>
+            </Placeholder>
+          }
           className={classNames(
             "b-none",
             "text-26px",
@@ -55,6 +61,11 @@ export default function Note({ note, updateNote }: IProps) {
       <Editable
         content={note.body}
         handleChange={(body) => updateNote({ ...note, body })}
+        placeholder={
+          <Placeholder>
+            <p>Type something...</p>
+          </Placeholder>
+        }
         className={classNames(
           "b-none",
           "text-16px",
