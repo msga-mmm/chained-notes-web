@@ -36,7 +36,7 @@ export default function Note({ note, updateNote }: IProps) {
             "text-26px",
             "font-bold",
             "w-full",
-            "focus:outline-none"
+            "focus:outline-none",
           )}
         />
 
