@@ -43,7 +43,7 @@ export default function Note({ note, updateNote }: IProps) {
         <Link
           to={`${import.meta.env.BASE_URL}`}
           className={classNames(
-            "inline-flex",
+            "flex",
             "items-center",
             "justify-center",
             "bg-main-red",
