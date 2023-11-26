@@ -22,7 +22,7 @@ export default function Note({ note, updateNote }: IProps) {
         "overflow-y-auto",
       )}
     >
-      <div className={classNames("flex", "flex-row")}>
+      <div className="flex mb-1rem">
         <Editable
           content={note.title}
           handleChange={(title) => updateNote({ ...note, title })}
@@ -36,28 +36,32 @@ export default function Note({ note, updateNote }: IProps) {
             "text-26px",
             "font-bold",
             "w-full",
-            "focus:outline-none",
-            "mb-1rem",
+            "focus:outline-none"
           )}
         />
+
         <Link
           to={`${import.meta.env.BASE_URL}`}
           className={classNames(
+            "inline-flex",
+            "items-center",
+            "justify-center",
             "bg-main-red",
             "p-4px",
             "m-auto",
             "rounded-full",
           )}
         >
-          <div
+          <i
             className={classNames(
               "i-akar-icons:arrow-back",
               "m-5px",
-              "bg-white",
+              "color-white",
             )}
-          ></div>
+          />
         </Link>
       </div>
+
       <Editable
         content={note.body}
         handleChange={(body) => updateNote({ ...note, body })}
