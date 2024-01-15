@@ -65,7 +65,7 @@ test("creates note with title and body", async () => {
   });
 });
 
-test("creates empty note with progressive untitled names", async () => {
+test("creates empty notes with progressive untitled names", async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
