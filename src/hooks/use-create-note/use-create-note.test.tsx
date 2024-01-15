@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { selectNotes } from "src/features/notes/notesSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
-test("creates empty note", async () => {
+test("adds created note into notes state", async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
@@ -21,9 +21,19 @@ test("creates empty note", async () => {
   });
 
   const note = await act(() => createNoteResult.current());
-
-  expect(notesResult.current).toHaveLength(1);
   expect(notesResult.current.at(0)).toBe(note);
+});
+
+test("creates empty note", async () => {
+  const store = configureStore({
+    reducer: rootReducer,
+  });
+
+  const { result: createNoteResult } = renderHook(() => useCreateNote(), {
+    wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
+  });
+
+  const note = await act(() => createNoteResult.current());
 
   expect(note).toStrictEqual({
     id: expect.any(String),
@@ -37,12 +47,6 @@ test("creates note with title and body", async () => {
     reducer: rootReducer,
   });
 
-  const { result: notesResult } = renderHook(() => selectNotes(), {
-    wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
-  });
-
-  expect(notesResult.current).toHaveLength(0);
-
   const { result: createNoteResult } = renderHook(() => useCreateNote(), {
     wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
   });
@@ -53,9 +57,6 @@ test("creates note with title and body", async () => {
       body: "my body",
     }),
   );
-
-  expect(notesResult.current).toHaveLength(1);
-  expect(notesResult.current.at(0)).toBe(note);
 
   expect(note).toStrictEqual({
     id: expect.any(String),
