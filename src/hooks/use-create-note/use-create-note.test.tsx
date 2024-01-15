@@ -24,6 +24,7 @@ test("creates empty note", async () => {
 
   expect(notesResult.current).toHaveLength(1);
   expect(notesResult.current.at(0)).toBe(note);
+
   expect(note).toStrictEqual({
     id: expect.any(String),
     title: "untitled",
@@ -55,9 +56,29 @@ test("creates note with title and body", async () => {
 
   expect(notesResult.current).toHaveLength(1);
   expect(notesResult.current.at(0)).toBe(note);
+
   expect(note).toStrictEqual({
     id: expect.any(String),
     title: "my testing title",
     body: "my testing body",
   });
+});
+
+test("creates empty note with progressive untitled names", async () => {
+  const store = configureStore({
+    reducer: rootReducer,
+  });
+
+  const { result: createNoteResult } = renderHook(() => useCreateNote(), {
+    wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
+  });
+
+  const note = await act(() => createNoteResult.current());
+  expect(note.title).toBe("untitled");
+
+  const note2 = await act(() => createNoteResult.current());
+  expect(note2.title).toBe("untitled 1");
+
+  const note3 = await act(() => createNoteResult.current());
+  expect(note3.title).toBe("untitled 2");
 });
