@@ -49,8 +49,8 @@ test("creates note with title and body", async () => {
 
   const note = await act(() =>
     createNoteResult.current({
-      title: "my testing title",
-      body: "my testing body",
+      title: "my title",
+      body: "my body",
     }),
   );
 
@@ -59,8 +59,8 @@ test("creates note with title and body", async () => {
 
   expect(note).toStrictEqual({
     id: expect.any(String),
-    title: "my testing title",
-    body: "my testing body",
+    title: "my title",
+    body: "my body",
   });
 });
 
