@@ -2,15 +2,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
 import NotePage from "./routes/NotePage";
+import { AppRoutes } from "./constants";
 
 const router = createBrowserRouter([
   {
-    path: `${import.meta.env.BASE_URL}`,
+    path: AppRoutes.base,
     element: <Root />,
     errorElement: <ErrorPage />,
   },
   {
-    path: `${import.meta.env.BASE_URL}note/:id/`,
+    path: AppRoutes.note,
     element: <NotePage />,
     errorElement: <ErrorPage />,
   },

@@ -1,6 +1,7 @@
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
+import { AppRoutes } from "src/constants";
 
 interface IError {
   statusText?: string;
@@ -32,7 +33,7 @@ export default function ErrorPage(props: IErrorPage) {
       <p className={classNames("mt-6px")}>
         <i>{message}</i>
       </p>
-      <Link to={`${import.meta.env.BASE_URL}`}>
+      <Link to={AppRoutes.base}>
         <button
           className={classNames("btn-main", "py-.4rem", "px-1rem", "mt-2rem")}
           type="button"
