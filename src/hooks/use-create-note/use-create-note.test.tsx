@@ -31,7 +31,7 @@ test("creates empty note", async () => {
   });
 });
 
-test("creates notes with given values", async () => {
+test("creates note with title and body", async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
