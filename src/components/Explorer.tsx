@@ -1,10 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, generatePath, useNavigate } from "react-router-dom";
 import { selectNotes } from "src/features/notes/notesSlice";
-import CreateNote from "./CreateNote/CreateNote";
 import classNames from "classnames";
+import { AppRoutes } from "src/constants";
+import { useCreateNote } from "src/hooks";
 
 export default function Explorer() {
   const notes = selectNotes();
+  const navigate = useNavigate();
+  const createNote = useCreateNote();
+
+  const handleNewNoteClick = () => {
+    const note = createNote();
+    navigate(
+      generatePath(AppRoutes.note, {
+        id: note.id,
+      }),
+    );
+  };
 
   return (
     <div
@@ -22,8 +34,11 @@ export default function Explorer() {
           <p className={classNames("color-main-red", "font-bold", "text-18px")}>
             Notes
           </p>
-          <CreateNote
+          <button
+            onClick={handleNewNoteClick}
+            type="button"
             className={classNames(
+              "btn-main",
               "flex",
               "ml-auto",
               "my-auto",
@@ -35,14 +50,16 @@ export default function Explorer() {
             )}
           >
             +
-          </CreateNote>
+          </button>
         </div>
         <div className={classNames("flex", "flex-col", "space-y-2px")}>
           {notes.map((note) => (
             <Link
               className={classNames("hover-op70")}
               key={note.id}
-              to={`${import.meta.env.BASE_URL}note/${note.id}/`}
+              to={generatePath(AppRoutes.note, {
+                id: note.id,
+              })}
             >
               {note.title}
             </Link>

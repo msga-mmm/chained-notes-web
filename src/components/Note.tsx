@@ -3,6 +3,7 @@ import { INote } from "src/features/notes/notesSlice";
 import Editable from "./Editable";
 import classNames from "classnames";
 import Placeholder from "./Placeholder";
+import { AppRoutes } from "src/constants";
 
 interface IProps {
   note: INote;
@@ -41,7 +42,7 @@ export default function Note({ note, updateNote }: IProps) {
         />
 
         <Link
-          to={`${import.meta.env.BASE_URL}`}
+          to={AppRoutes.base}
           className={classNames(
             "flex",
             "items-center",
