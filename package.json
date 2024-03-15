@@ -21,7 +21,7 @@
     "coverage": "vitest run --coverage src"
   },
   "dependencies": {
-    "@lexical/react": "^0.12.2",
+    "@lexical/react": "^0.13.1",
     "@reduxjs/toolkit": "^1.9.7",
     "classnames": "^2.3.2",
     "lexical": "^0.12.2",
