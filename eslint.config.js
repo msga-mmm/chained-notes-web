@@ -3,6 +3,7 @@
 import js from "@eslint/js";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
+import eslintPluginDeprecation from "eslint-plugin-deprecation";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
@@ -18,11 +19,13 @@ export default [
       typescriptPlugin,
       import: eslintPluginImport,
       promise: eslintPluginPromise,
+      deprecation: eslintPluginDeprecation,
     },
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
         ...reactPreset.parserOptions,
+        project: true,
       },
       globals: {
         ...globals.browser,
@@ -97,6 +100,9 @@ export default [
 
       // eslint-plugin-promise rules
       ...eslintPluginPromise.configs.recommended.rules,
+
+      // eslint-plugin-deprecation rules
+      ...eslintPluginDeprecation.configs.recommended.rules,
     },
   },
 
