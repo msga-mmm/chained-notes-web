@@ -41,7 +41,7 @@ export default function NotePage() {
           "items-center",
         )}
       >
-        {note != undefined ? (
+        {note !== undefined ? (
           <Note note={note} updateNote={updateNote} key={note.id} />
         ) : (
           <ErrorPage error={`Note with id ${id} not found`} />
