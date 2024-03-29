@@ -1,11 +1,11 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from "vite";
-import React from "@vitejs/plugin-react";
-import UnoCSS from "unocss/vite";
 import presetAttributify from "@unocss/preset-attributify";
 import presetIcons from "@unocss/preset-icons";
 import presetUno from "@unocss/preset-uno";
+import React from "@vitejs/plugin-react";
+import UnoCSS from "unocss/vite";
+import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
@@ -32,8 +32,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "happy-dom",
-    useAtomics: true,
-    experimentalVmThreads: true,
     coverage: {
       provider: "v8",
       all: true,

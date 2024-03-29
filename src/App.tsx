@@ -1,8 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/Root";
+import { AppRoutes } from "./constants";
 import ErrorPage from "./routes/ErrorPage";
 import NotePage from "./routes/NotePage";
-import { AppRoutes } from "./constants";
+import Root from "./routes/Root";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {

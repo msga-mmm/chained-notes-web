@@ -1,16 +1,18 @@
-import { act, renderHook } from "@testing-library/react";
 import { useCreateNote } from "./use-create-note";
+
 import { rootReducer } from "src/app/store";
-import { Provider } from "react-redux";
-import { selectNotes } from "src/features/notes/notesSlice";
+import { useNotes } from "src/features/notes/notesSlice";
+
 import { configureStore } from "@reduxjs/toolkit";
+import { act, renderHook } from "@testing-library/react";
+import { Provider } from "react-redux";
 
 test("adds created note into notes state", async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
 
-  const { result: notesResult } = renderHook(() => selectNotes(), {
+  const { result: notesResult } = renderHook(() => useNotes(), {
     wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
   });
 

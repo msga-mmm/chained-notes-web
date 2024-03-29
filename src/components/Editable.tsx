@@ -1,23 +1,27 @@
+import ErrorBoundary from "./ErrorBoundary";
+
+import React from "react";
+
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import {
   $getRoot,
   $createParagraphNode,
   $createTextNode,
-  LexicalEditor,
   EditorState,
+  // TODO: avoid disabling eslint rule
+  // eslint-disable-next-line import/namespace
 } from "lexical";
+import { ReadonlyDeep } from "type-fest";
 
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import ErrorBoundary from "./ErrorBoundary";
-
-function onError(error: Error) {
+function onError(error: ReadonlyDeep<Error>) {
   alert(`Error initializing text editor: ${error.cause}`);
 }
 
-function getContent(editorState: EditorState, _editor: LexicalEditor) {
-  return new Promise<string>((resolve, _reject) => {
+function getContent(editorState: ReadonlyDeep<EditorState>) {
+  return new Promise<string>((resolve) => {
     editorState.read(() => {
       const root = $getRoot();
       const content = root.getTextContent();
@@ -30,10 +34,10 @@ interface IProps {
   content: string;
   handleChange: (content: string) => void;
   className: string;
-  placeholder: JSX.Element;
+  placeholder: React.JSX.Element;
 }
 
-export default function Editable(props: IProps) {
+export default function Editable(props: ReadonlyDeep<IProps>) {
   const initialConfig = {
     namespace: "editable",
     onError,
@@ -41,8 +45,8 @@ export default function Editable(props: IProps) {
       const root = $getRoot();
       const paragraph = $createParagraphNode();
       const text = $createTextNode(props.content);
-      paragraph.append(text);
-      root.append(paragraph);
+      const paragraphWithText = paragraph.append(text);
+      return root.append(paragraphWithText);
     },
   };
 
@@ -57,8 +61,8 @@ export default function Editable(props: IProps) {
       </div>
 
       <OnChangePlugin
-        onChange={async (editorState: EditorState, _editor: LexicalEditor) => {
-          const content = await getContent(editorState, _editor);
+        onChange={async (editorState: ReadonlyDeep<EditorState>) => {
+          const content = await getContent(editorState);
           props.handleChange(content);
         }}
       />

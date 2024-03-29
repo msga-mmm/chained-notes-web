@@ -1,8 +1,9 @@
 import Explorer from "src/components/Explorer";
-import classNames from "classnames";
-import { useNavigate, generatePath } from "react-router-dom";
 import { AppRoutes } from "src/constants";
 import { useCreateNote } from "src/hooks";
+
+import classNames from "classnames";
+import { useNavigate, generatePath } from "react-router-dom";
 
 export default function Root() {
   const navigate = useNavigate();

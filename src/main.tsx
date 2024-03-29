@@ -1,14 +1,18 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import "virtual:uno.css";
 import App from "./App";
+import { store } from "./app/store";
 import reportWebVitals from "./reportWebVitals";
 
-import "@unocss/reset/tailwind.css";
+import React from "react";
 
-import { store } from "./app/store";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+
+import "./index.css";
+// TODO: avoid disabling eslint rule
+// eslint-disable-next-line import/no-unresolved
+import "virtual:uno.css";
+
+import "@unocss/reset/tailwind.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

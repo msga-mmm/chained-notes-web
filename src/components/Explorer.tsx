@@ -1,11 +1,12 @@
-import { Link, generatePath, useNavigate } from "react-router-dom";
-import { selectNotes } from "src/features/notes/notesSlice";
-import classNames from "classnames";
 import { AppRoutes } from "src/constants";
+import { useNotes } from "src/features/notes/notesSlice";
 import { useCreateNote } from "src/hooks";
 
+import classNames from "classnames";
+import { Link, generatePath, useNavigate } from "react-router-dom";
+
 export default function Explorer() {
-  const notes = selectNotes();
+  const notes = useNotes();
   const navigate = useNavigate();
   const createNote = useCreateNote();
 
