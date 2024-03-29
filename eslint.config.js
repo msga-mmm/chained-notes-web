@@ -6,6 +6,7 @@ import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
 import eslintPluginFunctional from "eslint-plugin-functional/flat";
 import eslintPluginImport from "eslint-plugin-import";
+import eslintPluginJSXA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
@@ -24,6 +25,7 @@ export default [
       deprecation: eslintPluginDeprecation,
       "react-hooks": eslintPluginReactHooks,
       functional: eslintPluginFunctional,
+      "jsx-a11y": eslintPluginJSXA11y,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -128,6 +130,9 @@ export default [
       "functional/no-mixed-types": "off",
       "functional/no-return-void": "off",
       "functional/no-expression-statements": ["error", { ignoreVoid: true }],
+
+      // eslint-plugin-jsx-a11y rules
+      ...eslintPluginJSXA11y.configs.recommended.rules,
     },
   },
 
