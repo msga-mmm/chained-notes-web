@@ -1,11 +1,11 @@
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
 // https://eslint.org/docs/latest/use/configure/configuration-files-new
-import globals from "globals";
 import js from "@eslint/js";
-import react from "eslint-plugin-react";
-import typescriptParser from "@typescript-eslint/parser";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginImport from "eslint-plugin-import";
+import react from "eslint-plugin-react";
+import globals from "globals";
 
 const reactPreset = react.configs.recommended;
 
@@ -64,6 +64,34 @@ export default [
       // eslint-plugin-import rules
       ...eslintPluginImport.configs.recommended.rules,
       "import/no-cycle": ["error"],
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "index",
+            "sibling",
+            "parent",
+            "internal",
+            "external",
+            "builtin",
+            "object",
+            "type",
+          ],
+          pathGroups: [
+            {
+              pattern: "react",
+              group: "external",
+              position: "before",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["react"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
 

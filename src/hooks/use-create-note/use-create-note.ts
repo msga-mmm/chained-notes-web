@@ -1,10 +1,11 @@
+import { useAppDispatch } from "src/app/hooks";
 import {
   add,
   INote,
   INotesState,
   selectNotes,
 } from "src/features/notes/notesSlice";
-import { useAppDispatch } from "src/app/hooks";
+
 // TODO: avoid disabling eslint rule
 // eslint-disable-next-line import/namespace
 import { nanoid } from "nanoid";

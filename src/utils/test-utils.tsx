@@ -1,10 +1,13 @@
-import React, { ReactElement } from "react";
-import { render } from "@testing-library/react";
-import type { RenderOptions } from "@testing-library/react";
-import type { PreloadedState } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
 import { setupStore, type AppStore, type RootState } from "src/app/store";
+
+import React, { ReactElement } from "react";
+
+import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+
+import type { PreloadedState } from "@reduxjs/toolkit";
+import type { RenderOptions } from "@testing-library/react";
 
 type RenderWithProvidersProps = {
   preloadedState?: PreloadedState<RootState>;

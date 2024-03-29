@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import ErrorPage from "./ErrorPage";
+
 import { useAppDispatch } from "src/app/hooks";
 import Explorer from "src/components/Explorer";
 import Note from "src/components/Note";
 import { INote, selectNotes, edit } from "src/features/notes/notesSlice";
-import ErrorPage from "./ErrorPage";
+
+import { useEffect, useState } from "react";
+
 import classNames from "classnames";
+import { useParams } from "react-router-dom";
 
 export default function NotePage() {
   const { id } = useParams();

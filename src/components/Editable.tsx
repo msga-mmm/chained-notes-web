@@ -1,3 +1,9 @@
+import ErrorBoundary from "./ErrorBoundary";
+
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import {
   $getRoot,
   $createParagraphNode,
@@ -5,12 +11,6 @@ import {
   LexicalEditor,
   EditorState,
 } from "lexical";
-
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import ErrorBoundary from "./ErrorBoundary";
 
 function onError(error: Error) {
   alert(`Error initializing text editor: ${error.cause}`);

@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
-import { INote } from "src/features/notes/notesSlice";
 import Editable from "./Editable";
-import classNames from "classnames";
 import Placeholder from "./Placeholder";
+
 import { AppRoutes } from "src/constants";
+import { INote } from "src/features/notes/notesSlice";
+
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 interface IProps {
   note: INote;

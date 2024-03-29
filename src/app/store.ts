@@ -1,10 +1,11 @@
+import notesReducer from "src/features/notes/notesSlice";
+
 import {
   combineReducers,
   configureStore,
   PreloadedState,
 } from "@reduxjs/toolkit";
 
-import notesReducer from "src/features/notes/notesSlice";
 
 export const rootReducer = combineReducers({
   notes: notesReducer,

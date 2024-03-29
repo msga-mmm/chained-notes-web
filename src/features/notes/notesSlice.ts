@@ -1,6 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { useAppSelector } from "src/app/hooks";
+
+import { createSlice } from "@reduxjs/toolkit";
+
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface INote {
   id: string;
