@@ -1,7 +1,7 @@
 import { AppRoutes } from "src/constants";
 
 import classNames from "classnames";
-import { useRouteError , Link } from "react-router-dom";
+import { useRouteError, Link } from "react-router-dom";
 
 interface IError {
   statusText?: string;

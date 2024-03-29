@@ -6,7 +6,6 @@ import {
   PreloadedState,
 } from "@reduxjs/toolkit";
 
-
 export const rootReducer = combineReducers({
   notes: notesReducer,
 });
