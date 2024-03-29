@@ -1,7 +1,7 @@
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
 // https://eslint.org/docs/latest/use/configure/configuration-files-new
 import js from "@eslint/js";
-import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
 import eslintPluginFunctional from "eslint-plugin-functional/flat";
@@ -18,7 +18,7 @@ export default [
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
       react,
-      typescriptPlugin,
+      ts: typescriptEslintPlugin,
       import: eslintPluginImport,
       promise: eslintPluginPromise,
       deprecation: eslintPluginDeprecation,
@@ -56,6 +56,10 @@ export default [
       ...js.configs.recommended.rules,
 
       "no-console": ["error"],
+
+      // https://stackoverflow.com/a/61555310
+      "ts/no-unused-vars": ["error"],
+      "no-unused-vars": ["off"],
 
       // react +17 doesn't need to have react imported
       "react/react-in-jsx-scope": ["off"],
@@ -129,7 +133,6 @@ export default [
     files: ["**/*.{ts,tsx}"],
     rules: {
       "no-undef": ["off"],
-      "no-unused-vars": ["warn"],
     },
   },
 ];
