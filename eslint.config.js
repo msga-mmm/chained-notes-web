@@ -4,6 +4,7 @@ import js from "@eslint/js";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginImport from "eslint-plugin-import";
+import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
 import globals from "globals";
 
@@ -16,6 +17,7 @@ export default [
       react,
       typescriptPlugin,
       import: eslintPluginImport,
+      promise: eslintPluginPromise,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -92,6 +94,9 @@ export default [
           },
         },
       ],
+
+      // eslint-plugin-promise rules
+      ...eslintPluginPromise.configs.recommended.rules,
     },
   },
 
