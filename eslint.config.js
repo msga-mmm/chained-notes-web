@@ -1,9 +1,11 @@
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
+// https://eslint.org/docs/latest/use/configure/configuration-files-new
 import globals from "globals";
 import js from "@eslint/js";
 import react from "eslint-plugin-react";
 import typescriptParser from "@typescript-eslint/parser";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import eslintPluginImport from "eslint-plugin-import";
 
 const reactPreset = react.configs.recommended;
 
@@ -13,6 +15,7 @@ export default [
     plugins: {
       react,
       typescriptPlugin,
+      import: eslintPluginImport,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -52,6 +55,7 @@ export default [
         },
       ],
       "react/jsx-no-constructed-context-values": ["error"],
+      "import/no-cycle": ["error"],
     },
   },
 
