@@ -36,6 +36,11 @@ export default [
       react: {
         version: "detect",
       },
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.json",
+        },
+      },
     },
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     rules: {
@@ -55,6 +60,9 @@ export default [
         },
       ],
       "react/jsx-no-constructed-context-values": ["error"],
+
+      // eslint-plugin-import rules
+      ...eslintPluginImport.configs.recommended.rules,
       "import/no-cycle": ["error"],
     },
   },
