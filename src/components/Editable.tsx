@@ -10,16 +10,18 @@ import {
   $getRoot,
   $createParagraphNode,
   $createTextNode,
-  LexicalEditor,
   EditorState,
+  // TODO: avoid disabling eslint rule
+  // eslint-disable-next-line import/namespace
 } from "lexical";
+import { ReadonlyDeep } from "type-fest";
 
-function onError(error: Error) {
+function onError(error: ReadonlyDeep<Error>) {
   alert(`Error initializing text editor: ${error.cause}`);
 }
 
-function getContent(editorState: EditorState, _editor: LexicalEditor) {
-  return new Promise<string>((resolve, _reject) => {
+function getContent(editorState: ReadonlyDeep<EditorState>) {
+  return new Promise<string>((resolve) => {
     editorState.read(() => {
       const root = $getRoot();
       const content = root.getTextContent();
@@ -35,7 +37,7 @@ interface IProps {
   placeholder: React.JSX.Element;
 }
 
-export default function Editable(props: IProps) {
+export default function Editable(props: ReadonlyDeep<IProps>) {
   const initialConfig = {
     namespace: "editable",
     onError,
@@ -43,8 +45,8 @@ export default function Editable(props: IProps) {
       const root = $getRoot();
       const paragraph = $createParagraphNode();
       const text = $createTextNode(props.content);
-      paragraph.append(text);
-      root.append(paragraph);
+      const paragraphWithText = paragraph.append(text);
+      return root.append(paragraphWithText);
     },
   };
 
@@ -59,8 +61,8 @@ export default function Editable(props: IProps) {
       </div>
 
       <OnChangePlugin
-        onChange={async (editorState: EditorState, _editor: LexicalEditor) => {
-          const content = await getContent(editorState, _editor);
+        onChange={async (editorState: ReadonlyDeep<EditorState>) => {
+          const content = await getContent(editorState);
           props.handleChange(content);
         }}
       />

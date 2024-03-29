@@ -1,6 +1,7 @@
 import { useAppSelector } from "src/app/hooks";
 
 import { createSlice } from "@reduxjs/toolkit";
+import { ReadonlyDeep } from "type-fest";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -10,7 +11,7 @@ export interface INote {
   body: string;
 }
 
-export type INotesState = INote[];
+export type INotesState = readonly INote[];
 
 const initialState: INotesState = [];
 
@@ -18,20 +19,19 @@ export const notesSlice = createSlice({
   name: "notes",
   initialState,
   reducers: {
-    add(state, { payload }: PayloadAction<INote>) {
-      state.push(payload);
+    add(state, { payload }: ReadonlyDeep<PayloadAction<INote>>) {
+      return [...state, payload];
     },
-    edit(state, { payload }: PayloadAction<INote>) {
-      const noteIdx = state.findIndex((note) => note.id == payload.id);
-      state[noteIdx] = payload;
+    edit(state, { payload }: ReadonlyDeep<PayloadAction<INote>>) {
+      return state.map((note) => (note.id === payload.id ? payload : note));
     },
   },
 });
 
-export const selectNotes = () => useAppSelector((state) => state.notes);
+export const useNotes = () => useAppSelector((state) => state.notes);
 
-export const selectNote = (id: string) =>
-  selectNotes()
+export const useNote = (id: string) =>
+  useNotes()
     .filter((note) => note.id === id)
     .at(0);
 

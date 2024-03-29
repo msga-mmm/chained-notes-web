@@ -2,6 +2,7 @@ import { AppRoutes } from "src/constants";
 
 import classNames from "classnames";
 import { useRouteError, Link } from "react-router-dom";
+import { ReadonlyDeep } from "type-fest";
 
 interface IError {
   statusText?: string;
@@ -12,7 +13,7 @@ interface IErrorPage {
   error?: string;
 }
 
-export default function ErrorPage(props: IErrorPage) {
+export default function ErrorPage(props: ReadonlyDeep<IErrorPage>) {
   const routeError = useRouteError() as IError;
   const message = props.error || routeError.statusText || routeError.message;
 

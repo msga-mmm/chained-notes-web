@@ -3,30 +3,32 @@ import ErrorPage from "./ErrorPage";
 import { useAppDispatch } from "src/app/hooks";
 import Explorer from "src/components/Explorer";
 import Note from "src/components/Note";
-import { INote, selectNotes, edit } from "src/features/notes/notesSlice";
+import { INote, useNotes, edit } from "src/features/notes/notesSlice";
 
 import { useEffect, useState } from "react";
 
 import classNames from "classnames";
 import { useParams } from "react-router-dom";
+import { ReadonlyDeep } from "type-fest";
 
 export default function NotePage() {
   const { id } = useParams();
-  const notes = selectNotes();
+  const notes = useNotes();
   const dispatch = useAppDispatch();
 
   const [note, setNote] = useState(
     notes.filter((note) => note.id === id).at(0),
   );
 
-  const updateNote = (note: INote) => {
+  const updateNote = (note: ReadonlyDeep<INote>) => {
     setNote(note);
-    dispatch(edit(note));
+    const { payload } = dispatch(edit(note));
+    return payload;
   };
 
   useEffect(() => {
     setNote(notes.filter((note) => note.id === id).at(0));
-  }, [id]);
+  }, [id, notes]);
 
   return (
     <div className={classNames("flex", "min-h-100vh")}>

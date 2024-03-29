@@ -3,21 +3,16 @@ import {
   add,
   INote,
   INotesState,
-  selectNotes,
+  useNotes,
 } from "src/features/notes/notesSlice";
 
 // TODO: avoid disabling eslint rule
 // eslint-disable-next-line import/namespace
 import { nanoid } from "nanoid";
+import { ReadonlyDeep } from "type-fest";
 
-function newTitle(notes: INotesState) {
-  let title = "untitled";
-
-  if (notes.length > 0) {
-    title += ` ${notes.length}`;
-  }
-
-  return title;
+function newTitle(notes: ReadonlyDeep<INotesState>) {
+  return notes.length > 0 ? `untitled ${notes.length}` : "untitled";
 }
 
 type CreateNoteProps = {
@@ -27,7 +22,7 @@ type CreateNoteProps = {
 
 export function useCreateNote() {
   const dispatch = useAppDispatch();
-  const notes = selectNotes();
+  const notes = useNotes();
 
   const createNote = ({ title, body }: CreateNoteProps = {}) => {
     const note: INote = {
@@ -36,9 +31,9 @@ export function useCreateNote() {
       body: body ?? "",
     };
 
-    dispatch(add(note));
+    const { payload } = dispatch(add(note));
 
-    return note;
+    return payload;
   };
 
   return createNote;

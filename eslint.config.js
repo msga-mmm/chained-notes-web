@@ -4,6 +4,7 @@ import js from "@eslint/js";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
+import eslintPluginFunctional from "eslint-plugin-functional/flat";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
@@ -22,6 +23,7 @@ export default [
       promise: eslintPluginPromise,
       deprecation: eslintPluginDeprecation,
       "react-hooks": eslintPluginReactHooks,
+      functional: eslintPluginFunctional,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -108,6 +110,18 @@ export default [
 
       // eslint-plugin-react-hooks rules
       ...eslintPluginReactHooks.configs.recommended.rules,
+
+      // eslint-plugin-functional rules
+      ...eslintPluginFunctional.configs.recommended.rules,
+      "functional/functional-parameters": [
+        "error",
+        {
+          enforceParameterCount: false,
+        },
+      ],
+      "functional/no-mixed-types": "off",
+      "functional/no-return-void": "off",
+      "functional/no-expression-statements": ["error", { ignoreVoid: true }],
     },
   },
 

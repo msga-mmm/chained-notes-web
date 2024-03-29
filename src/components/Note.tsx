@@ -6,13 +6,14 @@ import { INote } from "src/features/notes/notesSlice";
 
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { ReadonlyDeep } from "type-fest";
 
 interface IProps {
-  note: INote;
-  updateNote: (note: INote) => void;
+  note: ReadonlyDeep<INote>;
+  updateNote: (note: ReadonlyDeep<INote>) => void;
 }
 
-export default function Note({ note, updateNote }: IProps) {
+export default function Note({ note, updateNote }: ReadonlyDeep<IProps>) {
   return (
     <div
       className={classNames(

@@ -5,6 +5,7 @@ import React, { ReactElement } from "react";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ReadonlyDeep } from "type-fest";
 
 import type { RenderOptions } from "@testing-library/react";
 
@@ -14,7 +15,7 @@ type RenderWithProvidersProps = {
 };
 
 const renderWithProviders = (
-  ui: ReactElement,
+  ui: ReadonlyDeep<ReactElement>,
   {
     preloadedState,
 
@@ -25,14 +26,14 @@ const renderWithProviders = (
   return <Provider store={store}>{ui}</Provider>;
 };
 
-const renderWithRouter = (ui: ReactElement) => {
+const renderWithRouter = (ui: ReadonlyDeep<ReactElement>) => {
   return <BrowserRouter>{ui}</BrowserRouter>;
 };
 
 type CustomRenderProps = RenderOptions & RenderWithProvidersProps;
 
 export const customRender = (
-  ui: ReactElement,
+  ui: ReadonlyDeep<ReactElement>,
   {
     // redux
     store,
@@ -42,13 +43,13 @@ export const customRender = (
     ...props
   }: CustomRenderProps = {},
 ) => {
-  let toRender = renderWithRouter(ui);
-  toRender = renderWithProviders(toRender, {
+  const uiWithRouter = renderWithRouter(ui);
+  const uiWithProviders = renderWithProviders(uiWithRouter, {
     store,
     preloadedState,
   });
 
-  return render(toRender, { ...props });
+  return render(uiWithProviders, { ...props });
 };
 
 export { customRender as render };
