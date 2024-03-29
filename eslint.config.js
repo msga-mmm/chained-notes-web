@@ -56,6 +56,8 @@ export default [
       ...js.configs.recommended.rules,
 
       "no-console": ["error"],
+      complexity: ["error", 10],
+      eqeqeq: "error",
 
       // https://stackoverflow.com/a/61555310
       "ts/no-unused-vars": ["error"],
