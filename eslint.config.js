@@ -6,8 +6,8 @@ import typescriptParser from "@typescript-eslint/parser";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginPromise from "eslint-plugin-promise";
-import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import react from "eslint-plugin-react";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 
 const reactPreset = react.configs.recommended;

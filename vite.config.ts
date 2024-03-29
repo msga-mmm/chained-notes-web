@@ -32,8 +32,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "happy-dom",
-    useAtomics: true,
-    experimentalVmThreads: true,
     coverage: {
       provider: "v8",
       all: true,

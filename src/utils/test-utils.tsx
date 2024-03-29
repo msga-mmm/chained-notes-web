@@ -6,18 +6,17 @@ import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import type { PreloadedState } from "@reduxjs/toolkit";
 import type { RenderOptions } from "@testing-library/react";
 
 type RenderWithProvidersProps = {
-  preloadedState?: PreloadedState<RootState>;
+  preloadedState?: RootState;
   store?: AppStore;
 };
 
 const renderWithProviders = (
   ui: ReactElement,
   {
-    preloadedState = {},
+    preloadedState,
 
     // Automatically create a store instance if no store was passed in
     store = setupStore(preloadedState),
