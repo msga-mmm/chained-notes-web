@@ -1,5 +1,7 @@
 import ErrorBoundary from "./ErrorBoundary";
 
+import React from "react";
+
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
@@ -30,7 +32,7 @@ interface IProps {
   content: string;
   handleChange: (content: string) => void;
   className: string;
-  placeholder: JSX.Element;
+  placeholder: React.JSX.Element;
 }
 
 export default function Editable(props: IProps) {

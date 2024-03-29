@@ -1,5 +1,7 @@
+import React from "react";
+
 interface IProps {
-  children: JSX.Element;
+  children: React.JSX.Element;
   onError: (error: Error) => void;
 }
 
