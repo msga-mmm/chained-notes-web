@@ -1,5 +1,5 @@
-import Editable from "./Editable";
-import Placeholder from "./Placeholder";
+import Editable from "../Editable";
+import Placeholder from "../Placeholder";
 
 import { AppRoutes } from "src/constants";
 import { INote } from "src/features/notes/notesSlice";

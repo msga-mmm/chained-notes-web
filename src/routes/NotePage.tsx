@@ -2,7 +2,7 @@ import ErrorPage from "./ErrorPage";
 
 import { useAppDispatch } from "src/app/hooks";
 import Explorer from "src/components/Explorer";
-import Note from "src/components/Note";
+import Note from "src/components/Note/Note";
 import { INote, useNotes, edit } from "src/features/notes/notesSlice";
 
 import { useEffect, useState } from "react";
