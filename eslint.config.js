@@ -1,3 +1,5 @@
+// @ts-check
+
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
 // https://eslint.org/docs/latest/use/configure/configuration-files-new
 import js from "@eslint/js";
@@ -11,10 +13,13 @@ import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
+import typescriptEslint from "typescript-eslint";
 
 const reactPreset = react.configs.recommended;
 
-export default [
+export default typescriptEslint.config(
+  ...typescriptEslint.configs.strictTypeChecked,
+
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
@@ -26,6 +31,7 @@ export default [
       "react-hooks": eslintPluginReactHooks,
       functional: eslintPluginFunctional,
       "jsx-a11y": eslintPluginJSXA11y,
+      "@typescript-eslint": typescriptEslint.plugin,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -133,6 +139,13 @@ export default [
 
       // eslint-plugin-jsx-a11y rules
       ...eslintPluginJSXA11y.configs.recommended.rules,
+
+      // typescript-eslint rules
+      "@typescript-eslint/no-floating-promises": "error",
+      // TODO: avoid disabling eslint rule
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      // TODO: avoid disabling eslint rule
+      "@typescript-eslint/no-unsafe-member-access": "off",
     },
   },
 
@@ -142,4 +155,4 @@ export default [
       "no-undef": ["off"],
     },
   },
-];
+);

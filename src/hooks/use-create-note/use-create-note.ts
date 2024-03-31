@@ -12,7 +12,7 @@ import { nanoid } from "nanoid";
 import { ReadonlyDeep } from "type-fest";
 
 function newTitle(notes: ReadonlyDeep<INotesState>) {
-  return notes.length > 0 ? `untitled ${notes.length}` : "untitled";
+  return notes.length > 0 ? `untitled ${notes.length.toString()}` : "untitled";
 }
 
 type CreateNoteProps = {
