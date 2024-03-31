@@ -18,7 +18,6 @@ import typescriptEslint from "typescript-eslint";
 const reactPreset = react.configs.recommended;
 
 export default typescriptEslint.config(
-  ...typescriptEslint.configs.strict,
   ...typescriptEslint.configs.strictTypeChecked,
 
   {
