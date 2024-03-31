@@ -29,7 +29,9 @@ export default function Note({ note, updateNote }: ReadonlyDeep<IProps>) {
       <div className="flex mb-1rem">
         <Editable
           content={note.title}
-          handleChange={(title) => updateNote({ ...note, title })}
+          handleChange={(title) => {
+            updateNote({ ...note, title });
+          }}
           placeholder={
             <Placeholder>
               <p className="text-26px">Add a title</p>
@@ -68,7 +70,9 @@ export default function Note({ note, updateNote }: ReadonlyDeep<IProps>) {
 
       <Editable
         content={note.body}
-        handleChange={(body) => updateNote({ ...note, body })}
+        handleChange={(body) => {
+          updateNote({ ...note, body });
+        }}
         placeholder={
           <Placeholder>
             <p>Type something...</p>

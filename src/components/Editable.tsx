@@ -17,16 +17,14 @@ import {
 import { ReadonlyDeep } from "type-fest";
 
 function onError(error: ReadonlyDeep<Error>) {
-  alert(`Error initializing text editor: ${error.cause}`);
+  alert(`Error initializing text editor: ${String(error.cause)}`);
 }
 
 function getContent(editorState: ReadonlyDeep<EditorState>) {
-  return new Promise<string>((resolve) => {
-    editorState.read(() => {
-      const root = $getRoot();
-      const content = root.getTextContent();
-      resolve(content);
-    });
+  return editorState.read<string>(() => {
+    const root = $getRoot();
+    const content = root.getTextContent();
+    return content;
   });
 }
 
@@ -61,8 +59,8 @@ export default function Editable(props: ReadonlyDeep<IProps>) {
       </div>
 
       <OnChangePlugin
-        onChange={async (editorState: ReadonlyDeep<EditorState>) => {
-          const content = await getContent(editorState);
+        onChange={(editorState: ReadonlyDeep<EditorState>) => {
+          const content = getContent(editorState);
           props.handleChange(content);
         }}
       />

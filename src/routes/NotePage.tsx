@@ -30,6 +30,10 @@ export default function NotePage() {
     setNote(notes.filter((note) => note.id === id).at(0));
   }, [id, notes]);
 
+  if (id === undefined) {
+    return null;
+  }
+
   return (
     <div className={classNames("flex", "min-h-100vh")}>
       <Explorer />
