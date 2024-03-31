@@ -19,7 +19,8 @@
     "format": "prettier --write .",
     "test": "vitest src",
     "test:ui": "vitest src --ui",
-    "coverage": "vitest run --coverage src"
+    "coverage": "vitest run --coverage src",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@lexical/react": "^0.14.2",
