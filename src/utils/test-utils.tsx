@@ -32,7 +32,7 @@ const renderWithRouter = (ui: ReadonlyDeep<ReactElement>) => {
 
 type CustomRenderProps = RenderOptions & RenderWithProvidersProps;
 
-export const customRender = (
+const customRender = (
   ui: ReadonlyDeep<ReactElement>,
   {
     // redux
