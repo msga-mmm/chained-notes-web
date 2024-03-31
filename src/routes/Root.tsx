@@ -1,4 +1,4 @@
-import Explorer from "src/components/Explorer";
+import Explorer from "src/components/Explorer/Explorer";
 import { AppRoutes } from "src/constants";
 import { useCreateNote } from "src/hooks";
 
