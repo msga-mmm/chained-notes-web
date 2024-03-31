@@ -12,6 +12,7 @@ import eslintPluginJSXA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginPromise from "eslint-plugin-promise";
 import react from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import eslintPluginTestingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import typescriptEslint from "typescript-eslint";
 
@@ -32,6 +33,7 @@ export default typescriptEslint.config(
       functional: eslintPluginFunctional,
       "jsx-a11y": eslintPluginJSXA11y,
       "@typescript-eslint": typescriptEslint.plugin,
+      "testing-library": eslintPluginTestingLibrary,
     },
     languageOptions: {
       parser: typescriptParser,
@@ -146,6 +148,13 @@ export default typescriptEslint.config(
       "@typescript-eslint/no-unsafe-assignment": "off",
       // TODO: avoid disabling eslint rule
       "@typescript-eslint/no-unsafe-member-access": "off",
+    },
+  },
+
+  {
+    files: ["**/*.test.{js,jsx,mjs,cjs,ts,tsx}"],
+    rules: {
+      ...eslintPluginTestingLibrary.configs.react.rules,
     },
   },
 
