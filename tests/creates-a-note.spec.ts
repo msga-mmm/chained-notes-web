@@ -19,6 +19,6 @@ test("creates a note", async ({ page }) => {
   const noteBodyTextbox = page.getByRole("textbox").nth(1);
 
   const noteBody = "- Buy pencils\n- Buy notebook\n- Organize bag";
-  await noteBodyTextbox.fill(noteBody + "test to fail");
-  await expect(page.getByText(noteBody)).toBeVisible();
+  await noteBodyTextbox.fill(noteBody);
+  await expect(page.getByText("test to fail")).toBeVisible();
 });
