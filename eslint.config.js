@@ -5,6 +5,7 @@
 import js from "@eslint/js";
 import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
+import eslintConfigPrettier from "eslint-config-prettier";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
 import eslintPluginFunctional from "eslint-plugin-functional/flat";
 import eslintPluginImport from "eslint-plugin-import";
@@ -148,6 +149,9 @@ export default typescriptEslint.config(
       "@typescript-eslint/no-unsafe-assignment": "off",
       // TODO: avoid disabling eslint rule
       "@typescript-eslint/no-unsafe-member-access": "off",
+
+      // eslint-config-prettier rules
+      ...eslintConfigPrettier.rules,
     },
   },
 

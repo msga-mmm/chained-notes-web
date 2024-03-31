@@ -15,7 +15,7 @@ export type INotesState = readonly INote[];
 
 const initialState: INotesState = [];
 
-export const notesSlice = createSlice({
+const notesSlice = createSlice({
   name: "notes",
   initialState,
   reducers: {
@@ -29,11 +29,6 @@ export const notesSlice = createSlice({
 });
 
 export const useNotes = () => useAppSelector((state) => state.notes);
-
-export const useNote = (id: string) =>
-  useNotes()
-    .filter((note) => note.id === id)
-    .at(0);
 
 export const { add, edit } = notesSlice.actions;
 
