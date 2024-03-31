@@ -1,3 +1,3 @@
 export default {
-  ignoreDependencies: ["virtual:uno.css"],
+  ignoreDependencies: ["virtual:uno.css", "eslint-import-resolver-typescript"],
 };
