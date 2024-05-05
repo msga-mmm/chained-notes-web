@@ -24,6 +24,7 @@
     "check:unused-code": "knip"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@lexical/react": "^0.14.2",
     "@reduxjs/toolkit": "^2.2.2",
     "classnames": "^2.5.1",
