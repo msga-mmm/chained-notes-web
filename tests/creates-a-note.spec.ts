@@ -1,6 +1,6 @@
 // TODO: avoid disabling eslint rule
 /* eslint-disable functional/no-expression-statements */
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
 test("creates a note", async ({ page }) => {
   await page.goto("/");
