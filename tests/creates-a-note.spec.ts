@@ -1,9 +1,20 @@
 // TODO: avoid disabling eslint rule
 /* eslint-disable functional/no-expression-statements */
+import { faker } from "@faker-js/faker";
 import { test, expect } from "@playwright/test";
 
 test("creates a note", async ({ page }) => {
   await page.goto("/");
+
+  await page.getByRole("link", { name: "Sign up" }).click();
+
+  await page
+    .getByLabel("Email address*")
+    .fill(faker.internet.email({ provider: "chained-notes.com" }));
+  await page.getByLabel("Password*").fill(faker.internet.password());
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+
+  await page.getByRole("button", { name: "Accept" }).click();
 
   const newNoteButton = page.getByRole("button", { name: /new note/i });
   await newNoteButton.click();
