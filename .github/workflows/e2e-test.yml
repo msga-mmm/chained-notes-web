@@ -31,12 +31,11 @@ jobs:
           VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
 
-      - name: Notify failures by slack
-        id: slack
+      - name: Notify Slack on failure
         if: failure()
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: slackapi/slack-github-action
         with:
-          channel-id: ${{ secrets.SLACK_CHANNEL }}
+          channel-id: ${{ secrets.SLACK_CHANNEL }} # Alternatively, you can use the channel name
           slack-message: |
             {
               "text": "A step in the CI pipeline has failed.",
@@ -47,17 +46,17 @@ jobs:
                   "fields": [
                     {
                       "title": "Repository",
-                      "value": "...",
+                      "value": "${{ github.repository }}",
                       "short": true
                     },
                     {
                       "title": "Commit",
-                      "value": "...",
+                      "value": "${{ github.sha }}",
                       "short": true
                     },
                     {
                       "title": "Actor",
-                      "value": "...",
+                      "value": "${{ github.actor }}",
                       "short": true
                     }
                   ]
@@ -65,4 +64,4 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

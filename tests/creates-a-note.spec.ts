@@ -6,7 +6,7 @@ import { test, expect } from "@playwright/test";
 test("creates a note", async ({ page }) => {
   await page.goto("/");
 
-  await page.getByRole("link", { name: "Sign up" }).click();
+  await page.getByRole("link", { name: "Sign up 2" }).click();
 
   await page
     .getByLabel("Email address*")
