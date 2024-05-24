@@ -36,31 +36,31 @@ jobs:
         uses: slackapi/slack-github-action@v1
         with:
           payload: |
-              {
-                  "text": "A step in the CI pipeline has failed.",
-                  "attachments": [
-                      {
-                          "fallback": "CI Failure Notification",
-                          "color": "#ff0000",
-                          "fields": [
-                              {
-                                  "title": "Repository",
-                                  "value": "...",
-                                  "short": true
-                              },
-                              {
-                                  "title": "Commit",
-                                  "value": "...",
-                                  "short": true
-                              },
-                              {
-                                  "title": "Actor",
-                                  "value": "...",
-                                  "short": true
-                              }
-                          ]
-                      }
-                  ]
-              }
+            {
+                "text": "A step in the CI pipeline has failed.",
+                "attachments": [
+                    {
+                        "fallback": "CI Failure Notification",
+                        "color": "#ff0000",
+                        "fields": [
+                            {
+                                "title": "Repository",
+                                "value": "...",
+                                "short": true
+                            },
+                            {
+                                "title": "Commit",
+                                "value": "...",
+                                "short": true
+                            },
+                            {
+                                "title": "Actor",
+                                "value": "...",
+                                "short": true
+                            }
+                        ]
+                    }
+                ]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
