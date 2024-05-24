@@ -36,32 +36,32 @@ jobs:
         if: failure()
         uses: slackapi/slack-github-action@v1.26.0
         with:
-          payload: |
+          slack-message: |
             {
-                "text": "A step in the CI pipeline has failed.",
-                "attachments": [
+              "text": "A step in the CI pipeline has failed.",
+              "attachments": [
+                {
+                  "fallback": "CI Failure Notification",
+                  "color": "#ff0000",
+                  "fields": [
                     {
-                        "fallback": "CI Failure Notification",
-                        "color": "#ff0000",
-                        "fields": [
-                            {
-                                "title": "Repository",
-                                "value": "...",
-                                "short": true
-                            },
-                            {
-                                "title": "Commit",
-                                "value": "...",
-                                "short": true
-                            },
-                            {
-                                "title": "Actor",
-                                "value": "...",
-                                "short": true
-                            }
-                        ]
+                      "title": "Repository",
+                      "value": "...",
+                      "short": true
+                    },
+                    {
+                      "title": "Commit",
+                      "value": "...",
+                      "short": true
+                    },
+                    {
+                      "title": "Actor",
+                      "value": "...",
+                      "short": true
                     }
-                ]
+                  ]
+                }
+              ]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
