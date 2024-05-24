@@ -33,7 +33,7 @@ jobs:
 
       - name: Notify Slack on failure
         if: failure()
-        uses: slackapi/slack-github-action
+        uses: slackapi/slack-github-action@v1
         with:
           channel-id: ${{ secrets.SLACK_CHANNEL }} # Alternatively, you can use the channel name
           slack-message: |
