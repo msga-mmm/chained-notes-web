@@ -30,3 +30,37 @@ jobs:
           HOME: /root
           VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+
+      - name: Notify failures by slack
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+              {
+                  "text": "A step in the CI pipeline has failed.",
+                  "attachments": [
+                      {
+                          "fallback": "CI Failure Notification",
+                          "color": "#ff0000",
+                          "fields": [
+                              {
+                                  "title": "Repository",
+                                  "value": "...",
+                                  "short": true
+                              },
+                              {
+                                  "title": "Commit",
+                                  "value": "...",
+                                  "short": true
+                              },
+                              {
+                                  "title": "Actor",
+                                  "value": "...",
+                                  "short": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
