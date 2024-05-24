@@ -38,7 +38,7 @@ jobs:
           channel-id: ${{ secrets.SLACK_CHANNEL }} # Alternatively, you can use the channel name
           payload: |
             {
-              "text": "A step in the CI pipeline has failed.",
+              "text": "A step in the CI pipeline has failed. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>",
               "attachments": [
                 {
                   "fallback": "CI Failure Notification",
