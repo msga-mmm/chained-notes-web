@@ -36,6 +36,7 @@ jobs:
         if: failure()
         uses: slackapi/slack-github-action@v1.26.0
         with:
+          channel-id: ${{ secrets.SLACK_CHANNEL }}
           slack-message: |
             {
               "text": "A step in the CI pipeline has failed.",
@@ -64,4 +65,4 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BOT_TOKEN }}
