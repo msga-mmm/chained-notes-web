@@ -30,3 +30,53 @@ jobs:
           HOME: /root
           VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
           VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+
+      # - name: Notify Slack on failure
+      #   if: failure()
+      #   uses: slackapi/slack-github-action@v1
+      #   with:
+      #     channel-id: ${{ secrets.SLACK_CHANNEL }} # Alternatively, you can use the channel name
+      #     payload: |
+      #       {
+      #         "text": "A step in the CI pipeline has failed. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>",
+      #         "attachments": [
+      #           {
+      #             "fallback": "CI Failure Notification",
+      #             "color": "#ff0000",
+      #             "fields": [
+      #               {
+      #                 "title": "Repository",
+      #                 "value": "${{ github.repository }}",
+      #                 "short": true
+      #               },
+      #               {
+      #                 "title": "Commit",
+      #                 "value": "${{ github.sha }}",
+      #                 "short": true
+      #               },
+      #               {
+      #                 "title": "Actor",
+      #                 "value": "${{ github.actor }}",
+      #                 "short": true
+      #               }
+      #             ]
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
+        env:
+          SLACK_COLOR: '#36a64f'
+          SLACK_MESSAGE: |
+            *JUnit Test Summary*
+            *Total Tests:* 10
+            *Passed:* 8
+            *Failed:* 2
+            *Skipped:* 0
+            *Run URL:* https://github.com/test/actions/runs/id
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
