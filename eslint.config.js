@@ -2,6 +2,7 @@
 
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
 // https://eslint.org/docs/latest/use/configure/configuration-files-new
+import { fixupPluginRules } from "@eslint/compat";
 import js from "@eslint/js";
 import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
@@ -27,14 +28,20 @@ export default typescriptEslint.config(
     plugins: {
       react,
       ts: typescriptEslintPlugin,
-      import: eslintPluginImport,
+      // TODO: remove eslint compatibility helper once `import` plugin supports eslint v9
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      import: fixupPluginRules(eslintPluginImport),
       promise: eslintPluginPromise,
-      deprecation: eslintPluginDeprecation,
+      // TODO: remove eslint compatibility helper once `deprecation` plugin supports eslint v9
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      deprecation: fixupPluginRules(eslintPluginDeprecation),
       "react-hooks": eslintPluginReactHooks,
       functional: eslintPluginFunctional,
       "jsx-a11y": eslintPluginJSXA11y,
       "@typescript-eslint": typescriptEslint.plugin,
-      "testing-library": eslintPluginTestingLibrary,
+      // TODO: remove eslint compatibility helper once `testing-library` plugin supports eslint v9
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      "testing-library": fixupPluginRules(eslintPluginTestingLibrary),
     },
     languageOptions: {
       parser: typescriptParser,
