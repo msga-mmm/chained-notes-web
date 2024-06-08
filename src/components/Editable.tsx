@@ -12,7 +12,6 @@ import {
   $createTextNode,
   EditorState,
   // TODO: avoid disabling eslint rule
-  // eslint-disable-next-line import/namespace
 } from "lexical";
 import { ReadonlyDeep } from "type-fest";
 
