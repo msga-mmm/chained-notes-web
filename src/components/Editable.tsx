@@ -11,7 +11,6 @@ import {
   $createParagraphNode,
   $createTextNode,
   EditorState,
-  // TODO: avoid disabling eslint rule
 } from "lexical";
 import { ReadonlyDeep } from "type-fest";
 
