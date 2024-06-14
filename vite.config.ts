@@ -36,5 +36,6 @@ export default defineConfig({
       provider: "v8",
       all: true,
     },
+    isolate: false,
   },
 });
