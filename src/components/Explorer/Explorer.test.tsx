@@ -1,5 +1,6 @@
 // TODO: avoid disabling eslint rule
 /* eslint-disable functional/no-expression-statements */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 
 import Explorer from "./Explorer";
 

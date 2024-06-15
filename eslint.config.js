@@ -2,7 +2,7 @@
 
 // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
 // https://eslint.org/docs/latest/use/configure/configuration-files-new
-import { fixupPluginRules } from "@eslint/compat";
+import { fixupPluginRules, includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
@@ -18,10 +18,21 @@ import eslintPluginTestingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import typescriptEslint from "typescript-eslint";
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 const reactPreset = react.configs.recommended;
+
+// Documentation: https://eslint.org/docs/latest/use/configure/ignore#including-gitignore-files
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gitignorePath = path.resolve(__dirname, ".gitignore");
 
 export default typescriptEslint.config(
   ...typescriptEslint.configs.strictTypeChecked,
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  includeIgnoreFile(gitignorePath),
 
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
