@@ -7,7 +7,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { act, renderHook } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-test("adds created note into notes state", async () => {
+test("adds created note into notes state", { concurrent: true }, async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
@@ -26,7 +26,7 @@ test("adds created note into notes state", async () => {
   expect(notesResult.current.at(0)).toBe(note);
 });
 
-test("creates empty note", async () => {
+test("creates empty note", { concurrent: true }, async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
@@ -44,7 +44,7 @@ test("creates empty note", async () => {
   });
 });
 
-test("creates note with title and body", async () => {
+test("creates note with title and body", { concurrent: true }, async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
@@ -67,21 +67,25 @@ test("creates note with title and body", async () => {
   });
 });
 
-test("creates empty notes with progressive untitled names", async () => {
-  const store = configureStore({
-    reducer: rootReducer,
-  });
+test(
+  "creates empty notes with progressive untitled names",
+  { concurrent: true },
+  async () => {
+    const store = configureStore({
+      reducer: rootReducer,
+    });
 
-  const { result: createNoteResult } = renderHook(() => useCreateNote(), {
-    wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
-  });
+    const { result: createNoteResult } = renderHook(() => useCreateNote(), {
+      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
+    });
 
-  const note = await act(() => createNoteResult.current());
-  expect(note.title).toBe("untitled");
+    const note = await act(() => createNoteResult.current());
+    expect(note.title).toBe("untitled");
 
-  const note2 = await act(() => createNoteResult.current());
-  expect(note2.title).toBe("untitled 1");
+    const note2 = await act(() => createNoteResult.current());
+    expect(note2.title).toBe("untitled 1");
 
-  const note3 = await act(() => createNoteResult.current());
-  expect(note3.title).toBe("untitled 2");
-});
+    const note3 = await act(() => createNoteResult.current());
+    expect(note3.title).toBe("untitled 2");
+  },
+);

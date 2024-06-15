@@ -7,7 +7,7 @@ import { render } from "src/utils/test-utils";
 
 import { screen } from "@testing-library/react";
 
-it("renders note title", () => {
+it("renders note title", { concurrent: true }, () => {
   const note = {
     title: "my title",
     body: "",
@@ -19,7 +19,7 @@ it("renders note title", () => {
   screen.getByText(note.title);
 });
 
-it("renders note body", () => {
+it("renders note body", { concurrent: true }, () => {
   const note = {
     title: "",
     body: "my body",
@@ -31,7 +31,7 @@ it("renders note body", () => {
   screen.getByText(note.body);
 });
 
-it("renders placeholder when note title is empty", () => {
+it("renders placeholder when note title is empty", { concurrent: true }, () => {
   const note = {
     title: "",
     body: "",
@@ -43,7 +43,7 @@ it("renders placeholder when note title is empty", () => {
   screen.getByText("Add a title");
 });
 
-it("renders placeholder when note body is empty", () => {
+it("renders placeholder when note body is empty", { concurrent: true }, () => {
   const note = {
     title: "",
     body: "",

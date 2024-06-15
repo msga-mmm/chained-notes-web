@@ -2,7 +2,7 @@ import { setupStore, type AppStore, type RootState } from "src/app/store";
 
 import React, { ReactElement } from "react";
 
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ReadonlyDeep } from "type-fest";
@@ -48,6 +48,9 @@ const customRender = (
     store,
     preloadedState,
   });
+
+  // Cleanup before rendering to ensure an empty state in concurrent execution.
+  cleanup();
 
   return render(uiWithProviders, { ...props });
 };
