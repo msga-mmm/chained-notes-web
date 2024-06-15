@@ -37,5 +37,8 @@ export default defineConfig({
       all: true,
     },
     isolate: false,
+    sequence: {
+      concurrent: true,
+    },
   },
 });
