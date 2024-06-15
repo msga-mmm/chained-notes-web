@@ -29,18 +29,15 @@ export default typescriptEslint.config(
       react,
       ts: typescriptEslintPlugin,
       // TODO: remove eslint compatibility helper once `import` plugin supports eslint v9
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       import: fixupPluginRules(eslintPluginImport),
       promise: eslintPluginPromise,
       // TODO: remove eslint compatibility helper once `deprecation` plugin supports eslint v9
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       deprecation: fixupPluginRules(eslintPluginDeprecation),
       "react-hooks": eslintPluginReactHooks,
       functional: eslintPluginFunctional,
       "jsx-a11y": eslintPluginJSXA11y,
       "@typescript-eslint": typescriptEslint.plugin,
       // TODO: remove eslint compatibility helper once `testing-library` plugin supports eslint v9
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       "testing-library": fixupPluginRules(eslintPluginTestingLibrary),
     },
     languageOptions: {
