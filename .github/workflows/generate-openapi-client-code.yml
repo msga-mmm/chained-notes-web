@@ -3,12 +3,11 @@ name: Generate OpenAPI client code
 on:
   repository_dispatch:
     types: [openapi-schema-has-changed]
+  workflow_dispatch:
 
 jobs:
   myEvent:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.sha }}
+      - run: echo TEST
