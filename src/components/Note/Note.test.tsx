@@ -17,7 +17,7 @@ it("renders note title", () => {
 
   render(<Note note={note} updateNote={() => {}} />);
 
-  screen.getByText(note.title);
+  screen.getByText("wrong text");
 });
 
 it("renders note body", () => {
