@@ -35,6 +35,11 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       all: true,
+      reporter: ["json"],
+    },
+    reporters: ["default", "junit", "github-actions"],
+    outputFile: {
+      junit: "junit.xml",
     },
     isolate: false,
     sequence: {
