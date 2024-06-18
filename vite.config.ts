@@ -32,7 +32,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "happy-dom",
-		reporters: ['default'],
+		reporters: ['default', 'github-actions'],
     coverage: {
       provider: "v8",
       all: true,
