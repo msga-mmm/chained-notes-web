@@ -8,9 +8,16 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4, 5, 6, 7, 8]
+        shardTotal: [8]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+
+      - run: echo process.env.GITHUB_ACTIONS
 
       - name: Install Bun
         run: npm install -g bun
@@ -19,4 +26,76 @@ jobs:
         run: bun install
 
       - name: Run unit tests
-        run: bun run test
+        run: bun run test:ci --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: Upload test report to GitHub Actions Artifacts
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-junit-report-${{ matrix.shardIndex }}
+          path: junit.xml
+          retention-days: 1
+
+      - run: cp coverage/coverage-final.json coverage.json
+
+      - name: Upload test coverage report to GitHub Actions Artifacts
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-coverage-json-report-${{ matrix.shardIndex }}
+          path: coverage.json
+          retention-days: 1
+
+  merge-reports:
+    # Merge reports after tests, even if some shards have failed
+    if: ${{ !cancelled() }}
+    needs: [tests]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Tests
+
+      - name: Download test reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-junit-reports
+          pattern: test-junit-report-*
+          merge-multiple: true
+
+      - name: JUnit Report Action
+        uses: mikepenz/action-junit-report@v4.1.0
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: test-junit-reports/**/junit.xml
+          fail_on_failure: true
+          require_passed_tests: true
+
+      # Coverage
+
+      - name: Download test reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-coverage-json-reports
+          pattern: test-coverage-json-report-*
+          merge-multiple: true
+
+      - run: ls
+
+      - run: ls test-coverage-json-reports
+
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          branch: staging
+          name: test-coverage-json-report-*
+          path: test-coverage-json-reports/base
+          name_is_regexp: true
+          if_no_artifact_found: warn
+
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        continue-on-error: true
+        with:
+          coverage-file: test-coverage-json-reports/target/coverage.json
+          base-coverage-file: test-coverage-json-reports/base/coverage.json

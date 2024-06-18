@@ -18,6 +18,7 @@
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "test": "vitest src",
+    "test:ci": "bun run test --run --coverage",
     "test:ui": "vitest src --ui",
     "coverage": "vitest run --coverage src",
     "test:e2e": "playwright test",
