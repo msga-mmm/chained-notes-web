@@ -34,7 +34,7 @@ jobs:
           path: junit.xml
           retention-days: 1
 
-      - run: copy coverage/coverage-final.json coverage.json
+      - run: cp coverage/coverage-final.json coverage.json
 
       - name: Upload test coverage report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
