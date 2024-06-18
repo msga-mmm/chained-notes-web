@@ -32,7 +32,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "happy-dom",
-		reporters: ['default'],
     coverage: {
       provider: "v8",
       all: true,
