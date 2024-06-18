@@ -34,12 +34,14 @@ jobs:
           path: junit.xml
           retention-days: 1
 
+      - run: copy coverage/coverage-final.json coverage.json
+
       - name: Upload test coverage report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage-json-report-${{ matrix.shardIndex }}
-          path: coverage/coverage-final.json
+          path: coverage.json
           retention-days: 1
 
   merge-reports:
@@ -93,5 +95,5 @@ jobs:
       - uses: ArtiomTr/jest-coverage-report-action@v2
         continue-on-error: true
         with:
-          coverage-file: test-coverage-json-reports/target/coverage-final.json
-          base-coverage-file: test-coverage-json-reports/base/coverage-final.json
+          coverage-file: test-coverage-json-reports/target/coverage.json
+          base-coverage-file: test-coverage-json-reports/base/coverage.json
