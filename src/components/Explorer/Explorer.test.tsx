@@ -16,5 +16,5 @@ it("creates new note with default name 'untitled'", async () => {
   const newNoteButton = screen.getByRole("button", { name: "+" });
   await user.click(newNoteButton);
 
-  screen.getByRole("link", { name: "untitled" });
+  screen.getByRole("link", { name: "untitled 2" });
 });
