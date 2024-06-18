@@ -74,15 +74,13 @@ jobs:
       - name: Download test reports from GitHub Actions Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: test-coverage-json-reports/target
+          path: test-coverage-json-reports
           pattern: test-coverage-json-report-*
           merge-multiple: true
 
       - run: ls
 
       - run: ls test-coverage-json-reports
-
-      - run: ls test-coverage-json-reports/target
 
       - uses: dawidd6/action-download-artifact@v2
         with:
