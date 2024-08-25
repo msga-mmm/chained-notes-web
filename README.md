@@ -30,3 +30,40 @@ A web interface for chained notes.
    ```sh
    bun run dev
    ```
+
+## Testing
+
+To run the end-to-end tests is necessary to install first playwright:
+
+```sh
+bunx playwright install
+```
+
+The above command will install playwright for all the browsers: firefox, chrome and webkit. To install playwright for a specific browser the following command can be used:
+
+```sh
+# chrome
+bunx playwright install chrome
+
+# firefox
+bunx playwright install firefox
+
+# webkit
+bunx playwright install webkit
+```
+
+After the installation finishes the tests can be run with the following command:
+
+```sh
+# all browsers (headless mode)
+bun run test:e2e
+
+# all browsers (ui mode)
+bun run test:e2e:ui
+
+# specific browser (headless mode)
+bun run test:e2e:chrome
+
+# specific browser (ui mode)
+bun run test:e2e:chrome:ui
+```

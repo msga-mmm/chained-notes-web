@@ -9,9 +9,9 @@ test("creates a note", async ({ page }) => {
   await page.getByRole("link", { name: "Sign up" }).click();
 
   await page
-    .getByLabel("Email address*")
+    .getByLabel("Email address")
     .fill(faker.internet.email({ provider: "chained-notes.com" }));
-  await page.getByLabel("Password*").fill(faker.internet.password());
+  await page.getByLabel("Password").fill(faker.internet.password());
   await page.getByRole("button", { name: "Continue", exact: true }).click();
 
   await page.getByRole("button", { name: "Accept" }).click();
