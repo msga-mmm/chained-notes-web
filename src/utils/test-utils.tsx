@@ -8,6 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import { ReadonlyDeep } from "type-fest";
 
 import type { RenderOptions } from "@testing-library/react";
+import { QueryClient } from "@tanstack/query-core";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 type RenderWithProvidersProps = {
   preloadedState?: RootState;
@@ -29,6 +31,8 @@ const renderWithProviders = (
 const renderWithRouter = (ui: ReadonlyDeep<ReactElement>) => {
   return <BrowserRouter>{ui}</BrowserRouter>;
 };
+
+const queryClient = new QueryClient();
 
 type CustomRenderProps = RenderOptions & RenderWithProvidersProps;
 
@@ -52,7 +56,12 @@ const customRender = (
   // Cleanup before rendering to ensure an empty state in concurrent execution.
   cleanup();
 
-  return render(uiWithProviders, { ...props });
+  return render(
+    <QueryClientProvider client={queryClient}>
+      {uiWithProviders}
+    </QueryClientProvider>,
+    { ...props },
+  );
 };
 
 export { customRender as render };
