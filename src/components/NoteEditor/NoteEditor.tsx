@@ -1,19 +1,19 @@
 import Editable from "../Editable";
 import Placeholder from "../Placeholder";
 
+import { Note } from "src/api/chainedNotesAPI.schemas";
 import { AppRoutes } from "src/constants";
-import { INote } from "src/features/notes/notesSlice";
 
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { ReadonlyDeep } from "type-fest";
 
 interface IProps {
-  note: ReadonlyDeep<INote>;
-  updateNote: (note: ReadonlyDeep<INote>) => void;
+  note: Note;
+  updateNote: (note: ReadonlyDeep<Note>) => void;
 }
 
-export default function Note({ note, updateNote }: ReadonlyDeep<IProps>) {
+export default function NoteEditor({ note, updateNote }: ReadonlyDeep<IProps>) {
   return (
     <div
       className={classNames(

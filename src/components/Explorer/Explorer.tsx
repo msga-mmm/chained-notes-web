@@ -1,21 +1,45 @@
+import {
+  getApiNotesListQueryKey,
+  useApiNotesCreate,
+  useApiNotesList,
+} from "src/api/chainedNotesAPI";
 import { AppRoutes } from "src/constants";
-import { useNotes } from "src/features/notes/notesSlice";
-import { useCreateNote } from "src/hooks";
 
+import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { Link, generatePath, useNavigate } from "react-router-dom";
 
 export default function Explorer() {
-  const notes = useNotes();
+  const { data: notes = [] } = useApiNotesList();
   const navigate = useNavigate();
-  const createNote = useCreateNote();
+  const { mutate: createNote } = useApiNotesCreate({
+    mutation: {
+      onSuccess: async () => {
+        return queryClient.invalidateQueries({
+          queryKey: getApiNotesListQueryKey(),
+        });
+      },
+    },
+  });
+  const queryClient = useQueryClient();
 
   const handleNewNoteClick = () => {
-    const note = createNote();
-    navigate(
-      generatePath(AppRoutes.note, {
-        id: note.id,
-      }),
+    createNote(
+      {
+        data: {
+          title: "untitled",
+          body: "empty",
+        },
+      },
+      {
+        onSuccess: (note) => {
+          navigate(
+            generatePath(AppRoutes.note, {
+              id: note.id.toString(),
+            }),
+          );
+        },
+      },
     );
   };
 
@@ -59,7 +83,7 @@ export default function Explorer() {
               className={classNames("hover-op70")}
               key={note.id}
               to={generatePath(AppRoutes.note, {
-                id: note.id,
+                id: note.id.toString(),
               })}
             >
               {note.title}

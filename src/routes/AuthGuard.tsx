@@ -1,3 +1,5 @@
+import { UserInitializedProvider } from "src/providers";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet } from "react-router-dom";
 
@@ -14,5 +16,9 @@ export function AuthGuard() {
     return null;
   }
 
-  return <Outlet />;
+  return (
+    <UserInitializedProvider>
+      <Outlet />
+    </UserInitializedProvider>
+  );
 }

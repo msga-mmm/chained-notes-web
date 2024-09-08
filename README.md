@@ -67,3 +67,11 @@ bun run test:e2e:chrome
 # specific browser (ui mode)
 bun run test:e2e:chrome:ui
 ```
+
+## Code design
+
+### Dependencies
+
+- AJV: this package is defined as a dev dependency to fix the issue between bun and orval `SyntaxError: Unexpected token ':'`. More information at https://github.com/orval-labs/orval/issues/1454
+
+- eslint-plugin-react-hooks: this package is defined with the canary release `5.1.0` to solve the issue `TypeError: context.getSource is not a function`. More information at https://github.com/facebook/react/pull/28773
