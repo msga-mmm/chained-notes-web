@@ -1,5 +1,6 @@
 // TODO: avoid disabling eslint rule
 /* eslint-disable functional/no-expression-statements */
+
 import { faker } from "@faker-js/faker";
 import { test, expect } from "@playwright/test";
 

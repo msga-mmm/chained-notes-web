@@ -1,0 +1,37 @@
+name: Generate OpenAPI client code
+
+on:
+  repository_dispatch:
+    types: [openapi-schema-has-changed]
+  workflow_dispatch:
+
+jobs:
+  new-openapi-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Bun
+        run: npm install -g bun
+
+      - name: Install packages
+        run: bun install
+
+      - name: Download latest Chained Notes OpenAPI schema
+        run: |
+          curl \
+          -L \
+          -o openapi-schema.yml \
+          https://raw.githubusercontent.com/msga-mmm/chained_notes/main/chained_notes/infrastructure/api/schemas/openapi-schema.yml
+
+      - name: Generate Orval code
+        run: bun run generate-openapi-client
+
+      - name: Remove unwanted files
+        run: |
+          # delete previously downloaded schema since only the generated code
+          # from the schema is necessary
+          rm openapi-schema.yml
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7

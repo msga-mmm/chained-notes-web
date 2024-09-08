@@ -30,6 +30,6 @@ const notesSlice = createSlice({
 
 export const useNotes = () => useAppSelector((state) => state.notes);
 
-export const { add, edit } = notesSlice.actions;
+export const { add } = notesSlice.actions;
 
 export default notesSlice.reducer;

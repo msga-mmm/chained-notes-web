@@ -1,12 +1,12 @@
+import { useApiNotesList } from "src/api/chainedNotesAPI";
 import { AppRoutes } from "src/constants";
-import { useNotes } from "src/features/notes/notesSlice";
 import { useCreateNote } from "src/hooks";
 
 import classNames from "classnames";
 import { Link, generatePath, useNavigate } from "react-router-dom";
 
 export default function Explorer() {
-  const notes = useNotes();
+  const { data: notes = [] } = useApiNotesList();
   const navigate = useNavigate();
   const createNote = useCreateNote();
 
@@ -59,7 +59,7 @@ export default function Explorer() {
               className={classNames("hover-op70")}
               key={note.id}
               to={generatePath(AppRoutes.note, {
-                id: note.id,
+                id: note.id.toString(),
               })}
             >
               {note.title}

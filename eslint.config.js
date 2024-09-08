@@ -8,7 +8,7 @@ import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
 import eslintConfigPrettier from "eslint-config-prettier";
 import eslintPluginDeprecation from "eslint-plugin-deprecation";
-import eslintPluginFunctional from "eslint-plugin-functional/flat";
+import eslintPluginFunctional from "eslint-plugin-functional";
 import eslintPluginImport from "eslint-plugin-import";
 import eslintPluginJSXA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginPromise from "eslint-plugin-promise";
@@ -31,16 +31,19 @@ const gitignorePath = path.resolve(__dirname, ".gitignore");
 export default typescriptEslint.config(
   ...typescriptEslint.configs.strictTypeChecked,
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   includeIgnoreFile(gitignorePath),
+
+  {
+    // TODO: disable this ignore, this was added due to this error:
+    // `The file was not found in any of the provided project(s): eslint.config.js`
+    ignores: ["eslint.config.js"],
+  },
 
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     plugins: {
       react,
       ts: typescriptEslintPlugin,
-      // TODO: remove eslint compatibility helper once `import` plugin supports eslint v9
-      import: fixupPluginRules(eslintPluginImport),
       promise: eslintPluginPromise,
       // TODO: remove eslint compatibility helper once `deprecation` plugin supports eslint v9
       deprecation: fixupPluginRules(eslintPluginDeprecation),
@@ -49,6 +52,7 @@ export default typescriptEslint.config(
       "jsx-a11y": eslintPluginJSXA11y,
       "@typescript-eslint": typescriptEslint.plugin,
       // TODO: remove eslint compatibility helper once `testing-library` plugin supports eslint v9
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       "testing-library": fixupPluginRules(eslintPluginTestingLibrary),
     },
     languageOptions: {
@@ -102,38 +106,6 @@ export default typescriptEslint.config(
       ],
       "react/jsx-no-constructed-context-values": ["error"],
 
-      // eslint-plugin-import rules
-      ...eslintPluginImport.configs.recommended.rules,
-      "import/no-cycle": ["error"],
-      "import/order": [
-        "error",
-        {
-          groups: [
-            "index",
-            "sibling",
-            "parent",
-            "internal",
-            "external",
-            "builtin",
-            "object",
-            "type",
-          ],
-          pathGroups: [
-            {
-              pattern: "react",
-              group: "external",
-              position: "before",
-            },
-          ],
-          pathGroupsExcludedImportTypes: ["react"],
-          "newlines-between": "always",
-          alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
-          },
-        },
-      ],
-
       // eslint-plugin-promise rules
       ...eslintPluginPromise.configs.recommended.rules,
 
@@ -167,6 +139,56 @@ export default typescriptEslint.config(
 
       // eslint-config-prettier rules
       ...eslintConfigPrettier.rules,
+    },
+  },
+
+  // Config based on https://github.com/import-js/eslint-plugin-import/issues/3051
+  {
+    // Excluded vite.config.ts because of the error:
+    // `Parse errors in imported module '@vitejs/plugin-react': parserPath or languageOptions.parser is required! (undefined:undefined)`
+    ignores: ["vite.config.ts"],
+    plugins: {
+      // TODO: remove eslint compatibility helper once `import` plugin supports eslint v9
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      import: fixupPluginRules(eslintPluginImport),
+    },
+    languageOptions: {
+      parser: typescriptParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+    rules: {
+      // eslint-plugin-import rules
+      ...eslintPluginImport.configs.recommended.rules,
+      "import/no-cycle": ["error"],
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "index",
+            "sibling",
+            "parent",
+            "internal",
+            "external",
+            "builtin",
+            "object",
+            "type",
+          ],
+          pathGroups: [
+            {
+              pattern: "react",
+              group: "external",
+              position: "before",
+            },
+          ],
+          pathGroupsExcludedImportTypes: ["react"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
 
