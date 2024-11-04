@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 
 // TODO: test skipped temporally while migrating from redux notes store logic
 // to backend-based
-test.skip("creates a note", async ({ page }) => {
+test("creates a note", async ({ page }) => {
   await page.goto("/");
 
   await page.getByRole("link", { name: "Sign up" }).click();
