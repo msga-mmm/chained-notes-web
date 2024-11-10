@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { ReadonlyDeep } from "type-fest";
@@ -21,7 +21,7 @@ export function useInjectTokenToAxiosInstance({
   getToken,
   onUnauthorized,
 }: ReadonlyDeep<UseInjectTokenToAxiosInstanceParams>) {
-  const [axiosInterceptor, setAxiosInterceptor] = useState<number>();
+  const axiosInterceptor = useRef<number>();
 
   const handleFulfilled = useCallback(
     // TODO: avoid disabling the rule functional/prefer-immutable-types, it is
@@ -58,8 +58,8 @@ export function useInjectTokenToAxiosInstance({
     // clear previous interceptor to avoid having more than one interceptor to
     // inject the bearer token
     // eslint-disable-next-line functional/no-conditional-statements
-    if (axiosInterceptor !== undefined) {
-      axiosInstance.interceptors.request.eject(axiosInterceptor);
+    if (axiosInterceptor.current !== undefined) {
+      axiosInstance.interceptors.request.eject(axiosInterceptor.current);
     }
 
     const interceptor = axiosInstance.interceptors.request.use(
@@ -67,12 +67,6 @@ export function useInjectTokenToAxiosInstance({
       handleRejected,
     );
 
-    setAxiosInterceptor(interceptor);
-  }, [
-    axiosInstance,
-    handleFulfilled,
-    handleRejected,
-    axiosInterceptor,
-    setAxiosInterceptor,
-  ]);
+    axiosInterceptor.current = interceptor;
+  }, [axiosInstance, handleFulfilled, handleRejected, axiosInterceptor]);
 }
