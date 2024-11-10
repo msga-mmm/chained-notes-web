@@ -67,6 +67,8 @@ export function useInjectTokenToAxiosInstance({
       handleRejected,
     );
 
+    // TODO: avoid mutating objects, it could lead to side-effects
+    // eslint-disable-next-line functional/immutable-data, functional/no-expression-statements
     axiosInterceptor.current = interceptor;
   }, [axiosInstance, handleFulfilled, handleRejected, axiosInterceptor]);
 }
