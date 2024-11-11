@@ -14,7 +14,7 @@ var $m=e=>{throw TypeError(e)};var Jc=(e,t,n)=>t.has(e)||$m("Cannot "+n);var C=(
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var Bx=R,Wx=Symbol.for("react.element"),Kx=Symbol.for("react.fragment"),Hx=Object.prototype.hasOwnProperty,Vx=Bx.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,Qx={key:!0,ref:!0,__self:!0,__source:!0};function _0(e,t,n){var r,i={},o=null,s=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(s=t.ref);for(r in t)Hx.call(t,r)&&!Qx.hasOwnProperty(r)&&(i[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)i[r]===void 0&&(i[r]=t[r]);return{$$typeof:Wx,type:e,key:o,ref:s,props:i,_owner:Vx.current}}Xu.Fragment=Kx;Xu.jsx=_0;Xu.jsxs=_0;c0.exports=Xu;var U=c0.exports;const Gc="/chained-notes-web/",Ii={base:Gc,notes:`${Gc}notes`,note:`${Gc}notes/:id`},qx=void 0;var Jx={};/**
+ */var Bx=R,Wx=Symbol.for("react.element"),Kx=Symbol.for("react.fragment"),Hx=Object.prototype.hasOwnProperty,Vx=Bx.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,Qx={key:!0,ref:!0,__self:!0,__source:!0};function _0(e,t,n){var r,i={},o=null,s=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(s=t.ref);for(r in t)Hx.call(t,r)&&!Qx.hasOwnProperty(r)&&(i[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)i[r]===void 0&&(i[r]=t[r]);return{$$typeof:Wx,type:e,key:o,ref:s,props:i,_owner:Vx.current}}Xu.Fragment=Kx;Xu.jsx=_0;Xu.jsxs=_0;c0.exports=Xu;var U=c0.exports;const Gc="/",Ii={base:Gc,notes:`${Gc}notes`,note:`${Gc}notes/:id`},qx=void 0;var Jx={};/**
  * @license React
  * use-sync-external-store-with-selector.production.min.js
  *
