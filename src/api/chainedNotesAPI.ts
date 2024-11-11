@@ -29,7 +29,7 @@ import type { ErrorType, BodyType } from "../orval/custom-axios-instance";
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
-export const apiNotesList = (
+export const notesList = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
@@ -39,49 +39,49 @@ export const apiNotesList = (
   );
 };
 
-export const getApiNotesListQueryKey = () => {
+export const getNotesListQueryKey = () => {
   return [`/api/notes/`] as const;
 };
 
-export const getApiNotesListQueryOptions = <
-  TData = Awaited<ReturnType<typeof apiNotesList>>,
+export const getNotesListQueryOptions = <
+  TData = Awaited<ReturnType<typeof notesList>>,
   TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof apiNotesList>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof notesList>>, TError, TData>
   >;
   request?: SecondParameter<typeof customInstance>;
 }) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getApiNotesListQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getNotesListQueryKey();
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof apiNotesList>>> = ({
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof notesList>>> = ({
     signal,
-  }) => apiNotesList(requestOptions, signal);
+  }) => notesList(requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof apiNotesList>>,
+    Awaited<ReturnType<typeof notesList>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type ApiNotesListQueryResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesList>>
+export type NotesListQueryResult = NonNullable<
+  Awaited<ReturnType<typeof notesList>>
 >;
-export type ApiNotesListQueryError = ErrorType<unknown>;
+export type NotesListQueryError = ErrorType<unknown>;
 
-export function useApiNotesList<
-  TData = Awaited<ReturnType<typeof apiNotesList>>,
+export function useNotesList<
+  TData = Awaited<ReturnType<typeof notesList>>,
   TError = ErrorType<unknown>,
 >(options: {
   query: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof apiNotesList>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof notesList>>, TError, TData>
   > &
     Pick<
       DefinedInitialDataOptions<
-        Awaited<ReturnType<typeof apiNotesList>>,
+        Awaited<ReturnType<typeof notesList>>,
         TError,
         TData
       >,
@@ -89,16 +89,16 @@ export function useApiNotesList<
     >;
   request?: SecondParameter<typeof customInstance>;
 }): DefinedUseQueryResult<TData, TError> & { queryKey: QueryKey };
-export function useApiNotesList<
-  TData = Awaited<ReturnType<typeof apiNotesList>>,
+export function useNotesList<
+  TData = Awaited<ReturnType<typeof notesList>>,
   TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof apiNotesList>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof notesList>>, TError, TData>
   > &
     Pick<
       UndefinedInitialDataOptions<
-        Awaited<ReturnType<typeof apiNotesList>>,
+        Awaited<ReturnType<typeof notesList>>,
         TError,
         TData
       >,
@@ -106,26 +106,26 @@ export function useApiNotesList<
     >;
   request?: SecondParameter<typeof customInstance>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey };
-export function useApiNotesList<
-  TData = Awaited<ReturnType<typeof apiNotesList>>,
+export function useNotesList<
+  TData = Awaited<ReturnType<typeof notesList>>,
   TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof apiNotesList>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof notesList>>, TError, TData>
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
-export function useApiNotesList<
-  TData = Awaited<ReturnType<typeof apiNotesList>>,
+export function useNotesList<
+  TData = Awaited<ReturnType<typeof notesList>>,
   TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof apiNotesList>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof notesList>>, TError, TData>
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getApiNotesListQueryOptions(options);
+  const queryOptions = getNotesListQueryOptions(options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -136,7 +136,7 @@ export function useApiNotesList<
   return query;
 }
 
-export const apiNotesCreate = (
+export const notesCreate = (
   noteRequest: BodyType<NoteRequest>,
   options?: SecondParameter<typeof customInstance>,
 ) => {
@@ -151,19 +151,19 @@ export const apiNotesCreate = (
   );
 };
 
-export const getApiNotesCreateMutationOptions = <
+export const getNotesCreateMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesCreate>>,
+    Awaited<ReturnType<typeof notesCreate>>,
     TError,
     { data: BodyType<NoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof apiNotesCreate>>,
+  Awaited<ReturnType<typeof notesCreate>>,
   TError,
   { data: BodyType<NoteRequest> },
   TContext
@@ -171,46 +171,46 @@ export const getApiNotesCreateMutationOptions = <
   const { mutation: mutationOptions, request: requestOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof apiNotesCreate>>,
+    Awaited<ReturnType<typeof notesCreate>>,
     { data: BodyType<NoteRequest> }
   > = (props) => {
     const { data } = props ?? {};
 
-    return apiNotesCreate(data, requestOptions);
+    return notesCreate(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type ApiNotesCreateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesCreate>>
+export type NotesCreateMutationResult = NonNullable<
+  Awaited<ReturnType<typeof notesCreate>>
 >;
-export type ApiNotesCreateMutationBody = BodyType<NoteRequest>;
-export type ApiNotesCreateMutationError = ErrorType<unknown>;
+export type NotesCreateMutationBody = BodyType<NoteRequest>;
+export type NotesCreateMutationError = ErrorType<unknown>;
 
-export const useApiNotesCreate = <
+export const useNotesCreate = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesCreate>>,
+    Awaited<ReturnType<typeof notesCreate>>,
     TError,
     { data: BodyType<NoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof apiNotesCreate>>,
+  Awaited<ReturnType<typeof notesCreate>>,
   TError,
   { data: BodyType<NoteRequest> },
   TContext
 > => {
-  const mutationOptions = getApiNotesCreateMutationOptions(options);
+  const mutationOptions = getNotesCreateMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
 
-export const apiNotesRetrieve = (
+export const notesRetrieve = (
   id: number,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
@@ -221,33 +221,29 @@ export const apiNotesRetrieve = (
   );
 };
 
-export const getApiNotesRetrieveQueryKey = (id: number) => {
+export const getNotesRetrieveQueryKey = (id: number) => {
   return [`/api/notes/${id}/`] as const;
 };
 
-export const getApiNotesRetrieveQueryOptions = <
-  TData = Awaited<ReturnType<typeof apiNotesRetrieve>>,
+export const getNotesRetrieveQueryOptions = <
+  TData = Awaited<ReturnType<typeof notesRetrieve>>,
   TError = ErrorType<unknown>,
 >(
   id: number,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof apiNotesRetrieve>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof notesRetrieve>>, TError, TData>
     >;
     request?: SecondParameter<typeof customInstance>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getApiNotesRetrieveQueryKey(id);
+  const queryKey = queryOptions?.queryKey ?? getNotesRetrieveQueryKey(id);
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof apiNotesRetrieve>>
-  > = ({ signal }) => apiNotesRetrieve(id, requestOptions, signal);
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof notesRetrieve>>> = ({
+    signal,
+  }) => notesRetrieve(id, requestOptions, signal);
 
   return {
     queryKey,
@@ -255,33 +251,29 @@ export const getApiNotesRetrieveQueryOptions = <
     enabled: !!id,
     ...queryOptions,
   } as UseQueryOptions<
-    Awaited<ReturnType<typeof apiNotesRetrieve>>,
+    Awaited<ReturnType<typeof notesRetrieve>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type ApiNotesRetrieveQueryResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesRetrieve>>
+export type NotesRetrieveQueryResult = NonNullable<
+  Awaited<ReturnType<typeof notesRetrieve>>
 >;
-export type ApiNotesRetrieveQueryError = ErrorType<unknown>;
+export type NotesRetrieveQueryError = ErrorType<unknown>;
 
-export function useApiNotesRetrieve<
-  TData = Awaited<ReturnType<typeof apiNotesRetrieve>>,
+export function useNotesRetrieve<
+  TData = Awaited<ReturnType<typeof notesRetrieve>>,
   TError = ErrorType<unknown>,
 >(
   id: number,
   options: {
     query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof apiNotesRetrieve>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof notesRetrieve>>, TError, TData>
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof apiNotesRetrieve>>,
+          Awaited<ReturnType<typeof notesRetrieve>>,
           TError,
           TData
         >,
@@ -290,22 +282,18 @@ export function useApiNotesRetrieve<
     request?: SecondParameter<typeof customInstance>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: QueryKey };
-export function useApiNotesRetrieve<
-  TData = Awaited<ReturnType<typeof apiNotesRetrieve>>,
+export function useNotesRetrieve<
+  TData = Awaited<ReturnType<typeof notesRetrieve>>,
   TError = ErrorType<unknown>,
 >(
   id: number,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof apiNotesRetrieve>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof notesRetrieve>>, TError, TData>
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof apiNotesRetrieve>>,
+          Awaited<ReturnType<typeof notesRetrieve>>,
           TError,
           TData
         >,
@@ -314,40 +302,32 @@ export function useApiNotesRetrieve<
     request?: SecondParameter<typeof customInstance>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey };
-export function useApiNotesRetrieve<
-  TData = Awaited<ReturnType<typeof apiNotesRetrieve>>,
+export function useNotesRetrieve<
+  TData = Awaited<ReturnType<typeof notesRetrieve>>,
   TError = ErrorType<unknown>,
 >(
   id: number,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof apiNotesRetrieve>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof notesRetrieve>>, TError, TData>
     >;
     request?: SecondParameter<typeof customInstance>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
-export function useApiNotesRetrieve<
-  TData = Awaited<ReturnType<typeof apiNotesRetrieve>>,
+export function useNotesRetrieve<
+  TData = Awaited<ReturnType<typeof notesRetrieve>>,
   TError = ErrorType<unknown>,
 >(
   id: number,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof apiNotesRetrieve>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof notesRetrieve>>, TError, TData>
     >;
     request?: SecondParameter<typeof customInstance>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getApiNotesRetrieveQueryOptions(id, options);
+  const queryOptions = getNotesRetrieveQueryOptions(id, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -358,7 +338,7 @@ export function useApiNotesRetrieve<
   return query;
 }
 
-export const apiNotesUpdate = (
+export const notesUpdate = (
   id: number,
   noteRequest: BodyType<NoteRequest>,
   options?: SecondParameter<typeof customInstance>,
@@ -374,19 +354,19 @@ export const apiNotesUpdate = (
   );
 };
 
-export const getApiNotesUpdateMutationOptions = <
+export const getNotesUpdateMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesUpdate>>,
+    Awaited<ReturnType<typeof notesUpdate>>,
     TError,
     { id: number; data: BodyType<NoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof apiNotesUpdate>>,
+  Awaited<ReturnType<typeof notesUpdate>>,
   TError,
   { id: number; data: BodyType<NoteRequest> },
   TContext
@@ -394,46 +374,46 @@ export const getApiNotesUpdateMutationOptions = <
   const { mutation: mutationOptions, request: requestOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof apiNotesUpdate>>,
+    Awaited<ReturnType<typeof notesUpdate>>,
     { id: number; data: BodyType<NoteRequest> }
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return apiNotesUpdate(id, data, requestOptions);
+    return notesUpdate(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type ApiNotesUpdateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesUpdate>>
+export type NotesUpdateMutationResult = NonNullable<
+  Awaited<ReturnType<typeof notesUpdate>>
 >;
-export type ApiNotesUpdateMutationBody = BodyType<NoteRequest>;
-export type ApiNotesUpdateMutationError = ErrorType<unknown>;
+export type NotesUpdateMutationBody = BodyType<NoteRequest>;
+export type NotesUpdateMutationError = ErrorType<unknown>;
 
-export const useApiNotesUpdate = <
+export const useNotesUpdate = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesUpdate>>,
+    Awaited<ReturnType<typeof notesUpdate>>,
     TError,
     { id: number; data: BodyType<NoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof apiNotesUpdate>>,
+  Awaited<ReturnType<typeof notesUpdate>>,
   TError,
   { id: number; data: BodyType<NoteRequest> },
   TContext
 > => {
-  const mutationOptions = getApiNotesUpdateMutationOptions(options);
+  const mutationOptions = getNotesUpdateMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
 
-export const apiNotesPartialUpdate = (
+export const notesPartialUpdate = (
   id: number,
   patchedNoteRequest: BodyType<PatchedNoteRequest>,
   options?: SecondParameter<typeof customInstance>,
@@ -449,19 +429,19 @@ export const apiNotesPartialUpdate = (
   );
 };
 
-export const getApiNotesPartialUpdateMutationOptions = <
+export const getNotesPartialUpdateMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesPartialUpdate>>,
+    Awaited<ReturnType<typeof notesPartialUpdate>>,
     TError,
     { id: number; data: BodyType<PatchedNoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof apiNotesPartialUpdate>>,
+  Awaited<ReturnType<typeof notesPartialUpdate>>,
   TError,
   { id: number; data: BodyType<PatchedNoteRequest> },
   TContext
@@ -469,46 +449,46 @@ export const getApiNotesPartialUpdateMutationOptions = <
   const { mutation: mutationOptions, request: requestOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof apiNotesPartialUpdate>>,
+    Awaited<ReturnType<typeof notesPartialUpdate>>,
     { id: number; data: BodyType<PatchedNoteRequest> }
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return apiNotesPartialUpdate(id, data, requestOptions);
+    return notesPartialUpdate(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type ApiNotesPartialUpdateMutationResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesPartialUpdate>>
+export type NotesPartialUpdateMutationResult = NonNullable<
+  Awaited<ReturnType<typeof notesPartialUpdate>>
 >;
-export type ApiNotesPartialUpdateMutationBody = BodyType<PatchedNoteRequest>;
-export type ApiNotesPartialUpdateMutationError = ErrorType<unknown>;
+export type NotesPartialUpdateMutationBody = BodyType<PatchedNoteRequest>;
+export type NotesPartialUpdateMutationError = ErrorType<unknown>;
 
-export const useApiNotesPartialUpdate = <
+export const useNotesPartialUpdate = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesPartialUpdate>>,
+    Awaited<ReturnType<typeof notesPartialUpdate>>,
     TError,
     { id: number; data: BodyType<PatchedNoteRequest> },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof apiNotesPartialUpdate>>,
+  Awaited<ReturnType<typeof notesPartialUpdate>>,
   TError,
   { id: number; data: BodyType<PatchedNoteRequest> },
   TContext
 > => {
-  const mutationOptions = getApiNotesPartialUpdateMutationOptions(options);
+  const mutationOptions = getNotesPartialUpdateMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
 
-export const apiNotesDestroy = (
+export const notesDestroy = (
   id: number,
   options?: SecondParameter<typeof customInstance>,
 ) => {
@@ -518,19 +498,19 @@ export const apiNotesDestroy = (
   );
 };
 
-export const getApiNotesDestroyMutationOptions = <
+export const getNotesDestroyMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesDestroy>>,
+    Awaited<ReturnType<typeof notesDestroy>>,
     TError,
     { id: number },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof apiNotesDestroy>>,
+  Awaited<ReturnType<typeof notesDestroy>>,
   TError,
   { id: number },
   TContext
@@ -538,41 +518,41 @@ export const getApiNotesDestroyMutationOptions = <
   const { mutation: mutationOptions, request: requestOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof apiNotesDestroy>>,
+    Awaited<ReturnType<typeof notesDestroy>>,
     { id: number }
   > = (props) => {
     const { id } = props ?? {};
 
-    return apiNotesDestroy(id, requestOptions);
+    return notesDestroy(id, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type ApiNotesDestroyMutationResult = NonNullable<
-  Awaited<ReturnType<typeof apiNotesDestroy>>
+export type NotesDestroyMutationResult = NonNullable<
+  Awaited<ReturnType<typeof notesDestroy>>
 >;
 
-export type ApiNotesDestroyMutationError = ErrorType<unknown>;
+export type NotesDestroyMutationError = ErrorType<unknown>;
 
-export const useApiNotesDestroy = <
+export const useNotesDestroy = <
   TError = ErrorType<unknown>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof apiNotesDestroy>>,
+    Awaited<ReturnType<typeof notesDestroy>>,
     TError,
     { id: number },
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof apiNotesDestroy>>,
+  Awaited<ReturnType<typeof notesDestroy>>,
   TError,
   { id: number },
   TContext
 > => {
-  const mutationOptions = getApiNotesDestroyMutationOptions(options);
+  const mutationOptions = getNotesDestroyMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
