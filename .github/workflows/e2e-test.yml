@@ -30,7 +30,7 @@ jobs:
           apt install --yes docker-compose
 
       - name: Start the services
-        run: docker compose up --detach
+        run: docker-compose up --detach
         env:
           # TODO: move non-sensitive variables to GitHub variables
           VITE_AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
