@@ -14,7 +14,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix && knip --fix",
-    "check": "tsc && bun run lint && bun run check:unused-code && bun run format:check",
+    "check": "bun run check:types && bun run lint && bun run check:unused-code && bun run format:check",
+    "check:unused-code": "knip",
+    "check:types": "tsc",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "test": "vitest src",
@@ -28,7 +30,6 @@
     "test:e2e:chrome:ui": "playwright test --project chrome --ui",
     "test:e2e:webkit": "playwright test --project webkit",
     "test:e2e:webkit:ui": "playwright test --project webkit --ui",
-    "check:unused-code": "knip",
     "generate-openapi-client": "orval"
   },
   "dependencies": {

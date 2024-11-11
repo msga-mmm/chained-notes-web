@@ -10,7 +10,7 @@ import { faker } from "@faker-js/faker";
 import { HttpResponse, delay, http } from "msw";
 import type { Note } from "./chainedNotesAPI.schemas";
 
-export const getApiNotesListResponseMock = (): Note[] =>
+export const getNotesListResponseMock = (): Note[] =>
   Array.from(
     { length: faker.number.int({ min: 1, max: 10 }) },
     (_, i) => i + 1,
@@ -20,7 +20,7 @@ export const getApiNotesListResponseMock = (): Note[] =>
     title: faker.word.sample(),
   }));
 
-export const getApiNotesCreateResponseMock = (
+export const getNotesCreateResponseMock = (
   overrideResponse: Partial<Note> = {},
 ): Note => ({
   body: faker.word.sample(),
@@ -29,7 +29,7 @@ export const getApiNotesCreateResponseMock = (
   ...overrideResponse,
 });
 
-export const getApiNotesRetrieveResponseMock = (
+export const getNotesRetrieveResponseMock = (
   overrideResponse: Partial<Note> = {},
 ): Note => ({
   body: faker.word.sample(),
@@ -38,7 +38,7 @@ export const getApiNotesRetrieveResponseMock = (
   ...overrideResponse,
 });
 
-export const getApiNotesUpdateResponseMock = (
+export const getNotesUpdateResponseMock = (
   overrideResponse: Partial<Note> = {},
 ): Note => ({
   body: faker.word.sample(),
@@ -47,7 +47,7 @@ export const getApiNotesUpdateResponseMock = (
   ...overrideResponse,
 });
 
-export const getApiNotesPartialUpdateResponseMock = (
+export const getNotesPartialUpdateResponseMock = (
   overrideResponse: Partial<Note> = {},
 ): Note => ({
   body: faker.word.sample(),
@@ -56,7 +56,7 @@ export const getApiNotesPartialUpdateResponseMock = (
   ...overrideResponse,
 });
 
-export const getApiNotesListMockHandler = (
+export const getNotesListMockHandler = (
   overrideResponse?:
     | Note[]
     | ((
@@ -72,14 +72,14 @@ export const getApiNotesListMockHandler = (
           ? typeof overrideResponse === "function"
             ? await overrideResponse(info)
             : overrideResponse
-          : getApiNotesListResponseMock(),
+          : getNotesListResponseMock(),
       ),
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
   });
 };
 
-export const getApiNotesCreateMockHandler = (
+export const getNotesCreateMockHandler = (
   overrideResponse?:
     | Note
     | ((
@@ -95,14 +95,14 @@ export const getApiNotesCreateMockHandler = (
           ? typeof overrideResponse === "function"
             ? await overrideResponse(info)
             : overrideResponse
-          : getApiNotesCreateResponseMock(),
+          : getNotesCreateResponseMock(),
       ),
       { status: 201, headers: { "Content-Type": "application/json" } },
     );
   });
 };
 
-export const getApiNotesRetrieveMockHandler = (
+export const getNotesRetrieveMockHandler = (
   overrideResponse?:
     | Note
     | ((
@@ -118,14 +118,14 @@ export const getApiNotesRetrieveMockHandler = (
           ? typeof overrideResponse === "function"
             ? await overrideResponse(info)
             : overrideResponse
-          : getApiNotesRetrieveResponseMock(),
+          : getNotesRetrieveResponseMock(),
       ),
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
   });
 };
 
-export const getApiNotesUpdateMockHandler = (
+export const getNotesUpdateMockHandler = (
   overrideResponse?:
     | Note
     | ((
@@ -141,14 +141,14 @@ export const getApiNotesUpdateMockHandler = (
           ? typeof overrideResponse === "function"
             ? await overrideResponse(info)
             : overrideResponse
-          : getApiNotesUpdateResponseMock(),
+          : getNotesUpdateResponseMock(),
       ),
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
   });
 };
 
-export const getApiNotesPartialUpdateMockHandler = (
+export const getNotesPartialUpdateMockHandler = (
   overrideResponse?:
     | Note
     | ((
@@ -164,14 +164,14 @@ export const getApiNotesPartialUpdateMockHandler = (
           ? typeof overrideResponse === "function"
             ? await overrideResponse(info)
             : overrideResponse
-          : getApiNotesPartialUpdateResponseMock(),
+          : getNotesPartialUpdateResponseMock(),
       ),
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
   });
 };
 
-export const getApiNotesDestroyMockHandler = (
+export const getNotesDestroyMockHandler = (
   overrideResponse?:
     | void
     | ((
@@ -187,10 +187,10 @@ export const getApiNotesDestroyMockHandler = (
   });
 };
 export const getChainedNotesAPIMock = () => [
-  getApiNotesListMockHandler(),
-  getApiNotesCreateMockHandler(),
-  getApiNotesRetrieveMockHandler(),
-  getApiNotesUpdateMockHandler(),
-  getApiNotesPartialUpdateMockHandler(),
-  getApiNotesDestroyMockHandler(),
+  getNotesListMockHandler(),
+  getNotesCreateMockHandler(),
+  getNotesRetrieveMockHandler(),
+  getNotesUpdateMockHandler(),
+  getNotesPartialUpdateMockHandler(),
+  getNotesDestroyMockHandler(),
 ];
