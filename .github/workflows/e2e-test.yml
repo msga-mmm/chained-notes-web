@@ -25,9 +25,6 @@ jobs:
       - name: Install packages
         run: bun install
 
-      - name: Install Playwright browsers and dependencies
-        run: bunx playwright install --with-deps
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -43,6 +40,8 @@ jobs:
           AUTH0_AUDIENCE: ${{ secrets.AUTH0_AUDIENCE }}
 
       - name: Run e2e tests
-        run: bun run test:e2e
+        run: |
+          bunx playwright install --with-deps
+          bun run test:e2e
         env:
           HOME: /root
