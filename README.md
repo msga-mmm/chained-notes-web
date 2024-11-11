@@ -41,7 +41,7 @@ A web interface for chained notes.
    docker compose up --detach
    ```
 
-4. After all the services have started the frontend will be running at https://localhost.
+4. After all the services have started, the frontend will be running at https://localhost. This may take a few minutes on the first run. You can verify the services are running correctly with `docker compose ps`. If you cannot access the frontend, check the service logs with `docker compose logs frontend`.
 
 ## Testing
 
