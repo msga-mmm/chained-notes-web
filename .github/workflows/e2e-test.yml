@@ -27,7 +27,7 @@ jobs:
       - name: Install docker compose
         run: |
           apt update
-          apt install docker-compose
+          apt install --yes docker-compose
 
       - name: Start the services
         run: docker compose up --detach
