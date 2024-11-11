@@ -1,4 +1,4 @@
-import { useApiNotesCreate } from "src/api/chainedNotesAPI";
+import { useNotesCreate } from "src/api/chainedNotesAPI";
 import Explorer from "src/components/Explorer/Explorer";
 import { AppRoutes } from "src/constants";
 
@@ -9,7 +9,7 @@ import { useNavigate, generatePath } from "react-router-dom";
 export default function Root() {
   const navigate = useNavigate();
   const { logout } = useAuth0();
-  const { mutate: createNote } = useApiNotesCreate();
+  const { mutate: createNote } = useNotesCreate();
 
   const handleNewNoteClick = () => {
     createNote(

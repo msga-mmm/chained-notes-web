@@ -7,11 +7,12 @@ import React from "@vitejs/plugin-react";
 import UnoCSS from "unocss/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import mkcert from "vite-plugin-mkcert";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/chained-notes-web/",
+  server: {
+    host: "0.0.0.0",
+  },
   plugins: [
     tsconfigPaths(),
     UnoCSS({
@@ -29,7 +30,6 @@ export default defineConfig({
       },
     }),
     React(),
-    mkcert(),
   ],
   test: {
     globals: true,

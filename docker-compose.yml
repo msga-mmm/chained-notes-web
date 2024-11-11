@@ -1,0 +1,67 @@
+services:
+  database:
+    image: postgres:alpine
+    # TODO: reduce the number of environment variables for easier initial setup
+    container_name: ${DATABASE_CONTAINER_NAME}
+    volumes:
+      - ${PROJECT_DATA_DIR}/database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # TODO: add `latest` tag to chained notes docker image
+  # TODO: add easy way to switch between docker images released and local
+  # development for fast testing between backend and frontend changes
+  application:
+    image: ghcr.io/msga-mmm/chained-notes:dev-20241111-012343
+    container_name: ${APPLICATION_CONTAINER_NAME}
+    command:
+      - sh
+      - -c
+      - |
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:80
+    env_file:
+      - .env
+    environment:
+      # TODO: define PYTHONUNBUFFERED in Django image
+      # avoid output buffering for realtime logging
+      PYTHONUNBUFFERED: 1
+
+      CSRF_TRUSTED_ORIGIN: "https://localhost"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    depends_on:
+      - application
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      # Nginx configuration
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+
+      # SSL configuration
+      - ./nginx/ssl/cert.pem:/etc/nginx/ssl/cert.pem
+      - ./nginx/ssl/dev.pem:/etc/nginx/ssl/dev.pem
+    depends_on:
+      - application
+      - frontend

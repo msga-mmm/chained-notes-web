@@ -1,9 +1,9 @@
 import ErrorPage from "./ErrorPage";
 
 import {
-  getApiNotesListQueryKey,
-  useApiNotesUpdate,
-  useApiNotesRetrieve,
+  getNotesListQueryKey,
+  useNotesUpdate,
+  useNotesRetrieve,
 } from "src/api/chainedNotesAPI";
 import { Note } from "src/api/chainedNotesAPI.schemas";
 import Explorer from "src/components/Explorer/Explorer";
@@ -17,12 +17,12 @@ import { ReadonlyDeep } from "type-fest";
 
 export default function NotePage() {
   const { id } = useParams();
-  const { data: note } = useApiNotesRetrieve(Number(id));
-  const { mutate: updateNote } = useApiNotesUpdate({
+  const { data: note } = useNotesRetrieve(Number(id));
+  const { mutate: updateNote } = useNotesUpdate({
     mutation: {
       onSuccess: async () => {
         return queryClient.invalidateQueries({
-          queryKey: getApiNotesListQueryKey(),
+          queryKey: getNotesListQueryKey(),
         });
       },
     },
