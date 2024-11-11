@@ -8,17 +8,17 @@ USER nonroot
 WORKDIR /home/nonroot/app
 
 # Copy files to install the dependencies
-COPY --chown=nonroot:nonroot package.json bun.lockb .
+COPY package.json bun.lockb .
 
 # Install dependencies
 RUN bun install
 
 # Copy the rest of the application code
-COPY --chown=nonroot:nonroot ./public ./public
-COPY --chown=nonroot:nonroot ./src ./src
-COPY --chown=nonroot:nonroot ./tests ./tests
+COPY ./public ./public
+COPY ./src ./src
+COPY ./tests ./tests
 
-COPY --chown=nonroot:nonroot ./eslint.config.js \
+COPY ./eslint.config.js \
   ./index.html \
   ./knip.ts \
   ./orval.config.ts \
