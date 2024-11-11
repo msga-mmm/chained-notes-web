@@ -8,7 +8,9 @@ A web interface for chained notes.
 
 ### Dependencies
 
-- [bun](https://github.com/oven-sh/bun)
+- [docker compose](https://docs.docker.com/compose/install/)
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [mkcert](https://github.com/FiloSottile/mkcert#installation)
 
 ### Getting started
 
@@ -19,17 +21,27 @@ A web interface for chained notes.
    cd chained-notes-web
    ```
 
-2. Install build dependencies in the project directory.
+2. Create local SSl certificate to be able to run the application in https locally for development and production parity https://12factor.net/dev-prod-parity.
 
    ```sh
-   bun install
+   # change directory where the certificate and key will be created
+   cd nginx/ssl
+
+   # create SSL certificate and key for `localhost`
+   mkcert -install -key-file dev.pem -cert-file cert.pem localhost
    ```
 
-3. Run the web client with vite for local development.
+3. Start all the docker compose services:
 
    ```sh
-   bun run dev
+   # start the services
+   docker compose up
+
+   # start the services in the background
+   docker compose up --detach
    ```
+
+4. After all the services have started the frontend will be running at https://localhost.
 
 ## Testing
 
