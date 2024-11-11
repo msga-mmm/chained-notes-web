@@ -4,9 +4,9 @@
 import Explorer from "./Explorer";
 
 import {
-  getApiNotesCreateMockHandler,
-  getApiNotesListMockHandler,
-  getApiNotesRetrieveResponseMock,
+  getNotesCreateMockHandler,
+  getNotesListMockHandler,
+  getNotesRetrieveResponseMock,
 } from "src/api/chainedNotesAPI.msw";
 import { Note } from "src/api/chainedNotesAPI.schemas";
 import { render } from "src/utils/test-utils";
@@ -36,14 +36,11 @@ afterAll(() => {
 });
 
 it("creates new note with default name 'untitled'", async () => {
-  const note: Note = getApiNotesRetrieveResponseMock({
+  const note: Note = getNotesRetrieveResponseMock({
     title: "untitled",
   });
 
-  server.use(
-    getApiNotesCreateMockHandler(),
-    getApiNotesListMockHandler([note]),
-  );
+  server.use(getNotesCreateMockHandler(), getNotesListMockHandler([note]));
 
   render(<Explorer />);
   const user = userEvent.setup();

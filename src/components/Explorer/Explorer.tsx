@@ -1,7 +1,7 @@
 import {
-  getApiNotesListQueryKey,
-  useApiNotesCreate,
-  useApiNotesList,
+  getNotesListQueryKey,
+  useNotesCreate,
+  useNotesList,
 } from "src/api/chainedNotesAPI";
 import { AppRoutes } from "src/constants";
 
@@ -10,13 +10,13 @@ import classNames from "classnames";
 import { Link, generatePath, useNavigate } from "react-router-dom";
 
 export default function Explorer() {
-  const { data: notes = [] } = useApiNotesList();
+  const { data: notes = [] } = useNotesList();
   const navigate = useNavigate();
-  const { mutate: createNote } = useApiNotesCreate({
+  const { mutate: createNote } = useNotesCreate({
     mutation: {
       onSuccess: async () => {
         return queryClient.invalidateQueries({
-          queryKey: getApiNotesListQueryKey(),
+          queryKey: getNotesListQueryKey(),
         });
       },
     },
