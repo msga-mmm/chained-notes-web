@@ -12,3 +12,7 @@ playwright/.cache
 /coverage/
 
 .env
+
+# SSL certificate and key for local development
+nginx/ssl/cert.pem
+nginx/ssl/dev.pem
