@@ -8,7 +8,7 @@ USER nonroot
 WORKDIR /home/nonroot/app
 
 # Copy files to install the dependencies
-COPY package.json bun.lockb .
+COPY package.json bun.lockb ./
 
 # Install dependencies
 RUN bun install
@@ -25,7 +25,7 @@ COPY ./eslint.config.js \
   ./playwright.config.ts \
   ./tsconfig.json \
   ./vite.config.ts \
-  .
+  ./
 
 # Start the Vite dev server
 CMD ["bun", "run", "dev"]
