@@ -43,4 +43,4 @@ jobs:
       - name: Run e2e tests
         run: bun run test:e2e
         env:
-          HOME: /root
+          HOME: /home/playwright
