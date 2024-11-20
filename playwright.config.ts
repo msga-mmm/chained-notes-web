@@ -37,10 +37,13 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "http://localhost:5173",
+    baseURL: "https://localhost",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+
+    // TODO: can this error be avoided? This happens due to the use of https with nginx.
+    ignoreHTTPSErrors: true,
   },
 
   /* Configure projects for major browsers */
@@ -99,11 +102,11 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: "bun run dev",
-    port: 5173,
-    reuseExistingServer: !process.env.CI,
-  },
+  // webServer: {
+  //   command: "bun run dev",
+  //   port: 5173,
+  //   reuseExistingServer: !process.env.CI,
+  // },
 };
 
 export default config;
