@@ -78,7 +78,7 @@
     "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-react": "^7.35.2",
     "eslint-plugin-react-hooks": "^5.1.0-rc-a03254bc-20240905",
-    "eslint-plugin-testing-library": "^6.3.0",
+    "eslint-plugin-testing-library": "^7.0.0",
     "globals": "^15.9.0",
     "happy-dom": "^15.7.3",
     "knip": "^5.30.0",
