@@ -1,4 +1,4 @@
-FROM oven/bun:1.1.36-alpine
+FROM oven/bun:1.1.37-alpine
 
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
