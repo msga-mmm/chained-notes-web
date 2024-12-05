@@ -21,7 +21,7 @@ export function useInjectTokenToAxiosInstance({
   getToken,
   onUnauthorized,
 }: ReadonlyDeep<UseInjectTokenToAxiosInstanceParams>) {
-  const axiosInterceptor = useRef<number>();
+  const axiosInterceptor = useRef<number | null>(null);
 
   const handleFulfilled = useCallback(
     // TODO: avoid disabling the rule functional/prefer-immutable-types, it is
@@ -58,7 +58,7 @@ export function useInjectTokenToAxiosInstance({
     // clear previous interceptor to avoid having more than one interceptor to
     // inject the bearer token
     // eslint-disable-next-line functional/no-conditional-statements
-    if (axiosInterceptor.current !== undefined) {
+    if (axiosInterceptor.current !== null) {
       axiosInstance.interceptors.request.eject(axiosInterceptor.current);
     }
 
