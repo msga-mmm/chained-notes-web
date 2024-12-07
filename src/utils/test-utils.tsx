@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import { QueryClient } from "@tanstack/query-core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import { ReadonlyDeep } from "type-fest";
 
 import type { RenderOptions } from "@testing-library/react";

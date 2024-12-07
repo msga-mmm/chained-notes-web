@@ -5,7 +5,7 @@ import { Note } from "src/api/chainedNotesAPI.schemas";
 import { AppRoutes } from "src/constants";
 
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { ReadonlyDeep } from "type-fest";
 
 interface IProps {

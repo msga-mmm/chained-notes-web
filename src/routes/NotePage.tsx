@@ -12,7 +12,7 @@ import { NoteProvider } from "src/providers/NoteProvider";
 
 import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { ReadonlyDeep } from "type-fest";
 
 export default function NotePage() {

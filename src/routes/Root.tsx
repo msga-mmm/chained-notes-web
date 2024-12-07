@@ -4,31 +4,31 @@ import { AppRoutes } from "src/constants";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import classNames from "classnames";
-import { useNavigate, generatePath } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router";
 
 export default function Root() {
   const navigate = useNavigate();
   const { logout } = useAuth0();
-  const { mutate: createNote } = useNotesCreate();
+  const { mutate: createNote } = useNotesCreate({
+    mutation: {
+      onSuccess: async (note) => {
+        /* eslint-disable-next-line functional/no-expression-statements */
+        await navigate(
+          generatePath(AppRoutes.note, {
+            id: note.id.toString(),
+          }),
+        );
+      },
+    },
+  });
 
   const handleNewNoteClick = () => {
-    createNote(
-      {
-        data: {
-          title: "untitled",
-          body: "empty",
-        },
+    createNote({
+      data: {
+        title: "untitled",
+        body: "empty",
       },
-      {
-        onSuccess: (note) => {
-          navigate(
-            generatePath(AppRoutes.note, {
-              id: note.id.toString(),
-            }),
-          );
-        },
-      },
-    );
+    });
   };
 
   const handleLogout = () =>
