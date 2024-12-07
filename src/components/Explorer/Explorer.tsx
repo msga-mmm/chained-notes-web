@@ -15,10 +15,12 @@ export default function Explorer() {
   const { mutate: createNote } = useNotesCreate({
     mutation: {
       onSuccess: async (note) => {
+        /* eslint-disable-next-line functional/no-expression-statements */
         await queryClient.invalidateQueries({
           queryKey: getNotesListQueryKey(),
         });
 
+        /* eslint-disable-next-line functional/no-expression-statements */
         await navigate(
           generatePath(AppRoutes.note, {
             id: note.id.toString(),

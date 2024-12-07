@@ -11,7 +11,7 @@ export function AuthGuard() {
   }
 
   if (!isAuthenticated) {
-     
+    // eslint-disable-next-line functional/no-expression-statements
     void loginWithRedirect();
     return null;
   }
