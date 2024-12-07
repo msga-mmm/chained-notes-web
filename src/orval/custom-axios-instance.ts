@@ -7,9 +7,9 @@ export const AXIOS_INSTANCE = Axios.create({ baseURL: BACKEND_URL });
 // Second `options` argument to pass extra options to each generated query
 
 export const customInstance = <T>(
-  // eslint-disable-next-line functional/prefer-immutable-types
+   
   config: AxiosRequestConfig,
-  // eslint-disable-next-line functional/prefer-immutable-types
+   
   options?: AxiosRequestConfig,
 ): Promise<T> => {
   const source = Axios.CancelToken.source();
@@ -23,7 +23,7 @@ export const customInstance = <T>(
   }).then(({ data }) => data);
 
   // @ts-expect-error injected cancel method used by orval to cancel the query
-  // eslint-disable-next-line functional/no-expression-statements, functional/immutable-data
+   
   promise.cancel = () => {
     source.cancel("Query was cancelled");
   };

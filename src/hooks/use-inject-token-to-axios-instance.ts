@@ -21,18 +21,18 @@ export function useInjectTokenToAxiosInstance({
   getToken,
   onUnauthorized,
 }: ReadonlyDeep<UseInjectTokenToAxiosInstanceParams>) {
-  const axiosInterceptor = useRef<number>();
+  const axiosInterceptor = useRef<number | null>(null);
 
   const handleFulfilled = useCallback(
     // TODO: avoid disabling the rule functional/prefer-immutable-types, it is
     // currently disabled due to the type of axios interceptors
-    // eslint-disable-next-line functional/prefer-immutable-types
+     
     async (config: InternalAxiosRequestConfig) => {
       const token = await getToken();
       // TODO: avoid disabling the rule functional/immutable-data & functional/no-expression-statements.
       // They are disabled currently because the axios config must be mutated
       // since there is no a way to destructure it without having types coflict.
-      // eslint-disable-next-line functional/immutable-data, functional/no-expression-statements
+       
       config.headers.Authorization = `Bearer ${token}`;
       return config;
     },
@@ -41,9 +41,9 @@ export function useInjectTokenToAxiosInstance({
 
   const handleRejected = useCallback(
     async (axiosError: ReadonlyDeep<AxiosError>) => {
-      // eslint-disable-next-line functional/no-conditional-statements
+       
       if (axiosError.response?.status === 401) {
-        // eslint-disable-next-line functional/no-expression-statements
+         
         await onUnauthorized?.();
       }
 
@@ -57,8 +57,8 @@ export function useInjectTokenToAxiosInstance({
   useEffect(() => {
     // clear previous interceptor to avoid having more than one interceptor to
     // inject the bearer token
-    // eslint-disable-next-line functional/no-conditional-statements
-    if (axiosInterceptor.current !== undefined) {
+     
+    if (axiosInterceptor.current !== null) {
       axiosInstance.interceptors.request.eject(axiosInterceptor.current);
     }
 
@@ -68,7 +68,7 @@ export function useInjectTokenToAxiosInstance({
     );
 
     // TODO: avoid mutating objects, it could lead to side-effects
-    // eslint-disable-next-line functional/immutable-data, functional/no-expression-statements
+     
     axiosInterceptor.current = interceptor;
   }, [axiosInstance, handleFulfilled, handleRejected]);
 }

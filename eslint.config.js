@@ -116,16 +116,16 @@ export default typescriptEslint.config(
       ...eslintPluginReactHooks.configs.recommended.rules,
 
       // eslint-plugin-functional rules
-      ...eslintPluginFunctional.configs.recommended.rules,
-      "functional/functional-parameters": [
-        "error",
-        {
-          enforceParameterCount: false,
-        },
-      ],
-      "functional/no-mixed-types": "off",
-      "functional/no-return-void": "off",
-      "functional/no-expression-statements": ["error", { ignoreVoid: true }],
+      // ...eslintPluginFunctional.configs.recommended.rules,
+      // "functional/functional-parameters": [
+      //   "error",
+      //   {
+      //     enforceParameterCount: false,
+      //   },
+      // ],
+      // "functional/no-mixed-types": "off",
+      // "functional/no-return-void": "off",
+      // "functional/no-expression-statements": ["error", { ignoreVoid: true }],
 
       // eslint-plugin-jsx-a11y rules
       ...eslintPluginJSXA11y.configs.recommended.rules,
