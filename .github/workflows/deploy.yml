@@ -16,7 +16,7 @@ jobs:
         run: npm install -g bun
 
       - name: Install packages
-        run: bun install
+        run: bun install --production
 
       - name: Build
         run: bun run build
