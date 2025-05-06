@@ -7,40 +7,37 @@ import { AppRoutes } from "src/constants";
 
 import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { Link, generatePath, useNavigate } from "react-router-dom";
+import { Link, generatePath, useNavigate } from "react-router";
 
 export default function Explorer() {
   const { data: notes = [] } = useNotesList();
   const navigate = useNavigate();
   const { mutate: createNote } = useNotesCreate({
     mutation: {
-      onSuccess: async () => {
-        return queryClient.invalidateQueries({
+      onSuccess: async (note) => {
+        /* eslint-disable-next-line functional/no-expression-statements */
+        await queryClient.invalidateQueries({
           queryKey: getNotesListQueryKey(),
         });
+
+        /* eslint-disable-next-line functional/no-expression-statements */
+        await navigate(
+          generatePath(AppRoutes.note, {
+            id: note.id.toString(),
+          }),
+        );
       },
     },
   });
   const queryClient = useQueryClient();
 
   const handleNewNoteClick = () => {
-    createNote(
-      {
-        data: {
-          title: "untitled",
-          body: "empty",
-        },
+    createNote({
+      data: {
+        title: "untitled",
+        body: "empty",
       },
-      {
-        onSuccess: (note) => {
-          navigate(
-            generatePath(AppRoutes.note, {
-              id: note.id.toString(),
-            }),
-          );
-        },
-      },
-    );
+    });
   };
 
   return (
