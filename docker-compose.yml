@@ -6,11 +6,9 @@ services:
     volumes:
       - ${PROJECT_DATA_DIR}/database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=${DATABASE_NAME}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-    env_file:
-      - .env
+      POSTGRES_DB: "app_db"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "12345678"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
@@ -29,22 +27,40 @@ services:
       - |
         python manage.py migrate
         python manage.py runserver 0.0.0.0:80
-    env_file:
-      - .env
     environment:
       # TODO: define PYTHONUNBUFFERED in Django image
       # avoid output buffering for realtime logging
       PYTHONUNBUFFERED: 1
 
       CSRF_TRUSTED_ORIGIN: "https://localhost"
+
+      PROJECT_NAME: "app"
+      PROJECT_DATA_DIR: "./data/db"
+
+      DATABASE_ENGINE: "django.db.backends.postgresql"
+      DATABASE_NAME: "app_db"
+      DATABASE_USER: "admin"
+      DATABASE_PASSWORD: "12345678"
+      DATABASE_HOST: "database"
+      DATABASE_PORT: 5432
+      DATABASE_CONTAINER_NAME: "db"
+
+      APPLICATION_CONTAINER_NAME: "app"
+
+      AUTH0_DOMAIN: "${AUTH0_DOMAIN}"
+      AUTH0_AUDIENCE: "${AUTH0_AUDIENCE}"
     depends_on:
       database:
         condition: service_healthy
 
   frontend:
     build: .
-    env_file:
-      - .env
+    environment:
+      VITE_BACKEND_URL: https://localhost
+
+      VITE_AUTH0_DOMAIN: "${VITE_AUTH0_DOMAIN}"
+      VITE_AUTH0_CLIENT_ID: "${VITE_AUTH0_CLIENT_ID}"
+      VITE_AUTH0_AUDIENCE: "${VITE_AUTH0_AUDIENCE}"
     volumes:
       - ./:/app
     depends_on:
