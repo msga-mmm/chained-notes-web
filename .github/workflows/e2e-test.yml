@@ -24,9 +24,23 @@ jobs:
       - name: Install packages
         run: bun install
 
+      - name: Install docker compose
+        run: |
+          apt update
+          apt install --yes docker-compose
+
+      - name: Start the services
+        run: docker-compose up --detach
+        env:
+          # TODO: move non-sensitive variables to GitHub variables
+          VITE_AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          VITE_AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          VITE_AUTH0_AUDIENCE: ${{ secrets.AUTH0_AUDIENCE }}
+
+          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          AUTH0_AUDIENCE: ${{ secrets.AUTH0_AUDIENCE }}
+
       - name: Run e2e tests
         run: bun run test:e2e
         env:
-          HOME: /root
-          VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
-          VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+          HOME: /home/playwright

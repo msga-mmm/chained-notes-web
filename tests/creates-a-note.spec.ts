@@ -3,9 +3,25 @@
 import { faker } from "@faker-js/faker";
 import { test, expect } from "@playwright/test";
 
+// TODO: move this assertion to a playwright global setup, like setup.test.ts
+// Assertion on all the tests to make sure there are no warnings or errors
+test.beforeEach(({ page }) => {
+  page.on("console", (message) => {
+    if (
+      message.type() === "error"
+      // TODO: uncomment warnings check and fix them
+      // || message.type() === 'warning'
+    ) {
+      // TODO: avoid disabling rules
+      // eslint-disable-next-line functional/no-throw-statements
+      throw new Error(`Console ${message.type()}: ${message.text()}`);
+    }
+  });
+});
+
 // TODO: test skipped temporally while migrating from redux notes store logic
 // to backend-based
-test.skip("creates a note", async ({ page }) => {
+test("creates a note", async ({ page }) => {
   await page.goto("/");
 
   await page.getByRole("link", { name: "Sign up" }).click();
