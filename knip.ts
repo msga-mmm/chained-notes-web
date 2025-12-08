@@ -1,8 +1,5 @@
 export default {
   ignoreDependencies: [
-    "virtual:uno.css",
-    "eslint-import-resolver-typescript",
-
     // dev dependency for orval and bun issue `SyntaxError: Unexpected token ':'`,
     // is not used directly but is necessary to avoid the issue.
     "ajv",
