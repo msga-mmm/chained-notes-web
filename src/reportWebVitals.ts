@@ -1,4 +1,4 @@
-import { onCLS, onFID, onFCP, onLCP, onTTFB } from "web-vitals";
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from "web-vitals";
 
 const reportWebVitals = (onPerfEntry?: () => void) => {
   if (!onPerfEntry) {
@@ -6,7 +6,7 @@ const reportWebVitals = (onPerfEntry?: () => void) => {
   }
 
   onCLS(onPerfEntry);
-  onFID(onPerfEntry);
+  onINP(onPerfEntry);
   onFCP(onPerfEntry);
   onLCP(onPerfEntry);
   onTTFB(onPerfEntry);

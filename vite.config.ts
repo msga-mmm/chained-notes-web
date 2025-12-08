@@ -1,11 +1,9 @@
-/// <reference types="vitest" />
-
 import presetAttributify from "@unocss/preset-attributify";
 import presetIcons from "@unocss/preset-icons";
-import presetUno from "@unocss/preset-uno";
-import React from "@vitejs/plugin-react";
+import { presetWind3 } from "@unocss/preset-wind3";
+import react from "@vitejs/plugin-react";
 import UnoCSS from "unocss/vite";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
@@ -16,7 +14,7 @@ export default defineConfig({
   plugins: [
     tsconfigPaths(),
     UnoCSS({
-      presets: [presetUno(), presetAttributify(), presetIcons()],
+      presets: [presetWind3(), presetAttributify(), presetIcons()],
       theme: {
         colors: {
           main: {
@@ -29,14 +27,13 @@ export default defineConfig({
           "bg-main-red b-none rounded-4px color-white font-bold text-16px cursor-pointer p-.4rem",
       },
     }),
-    React(),
+    react(),
   ],
   test: {
     globals: true,
     environment: "happy-dom",
     coverage: {
       provider: "v8",
-      all: true,
     },
     isolate: false,
     sequence: {
