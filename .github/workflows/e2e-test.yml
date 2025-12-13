@@ -16,7 +16,7 @@ jobs:
       image: mcr.microsoft.com/playwright
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Bun
         run: npm install -g bun
