@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Stale Branches
-        uses: crs-k/stale-branches@237c272c97bea369c768be571097be62c7462ed2
+        uses: crs-k/stale-branches@cdd2de61d35c1d4dc888af30f3a36c08c2bf6506
         with:
           max-issues: 1000
           days-before-stale: 60
