@@ -34,7 +34,7 @@ jobs:
           rm openapi-schema.yml
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0
+        uses: peter-evans/create-pull-request@6699836a213cf8b28c4f0408a404a6ac79d4458a
         with:
           title: "feat(open-api): update client code"
           labels: Open API,automated
