@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.0",
-    "@eslint/js": "^9.10.0",
+    "@eslint/js": "^10.0.0",
     "@faker-js/faker": "^10.0.0",
     "@playwright/test": "^1.47.0",
     "@testing-library/react": "^16.0.1",
@@ -65,7 +65,7 @@
     "@vitest/ui": "^4.0.15",
     "ajv": "^8.17.1",
     "cross-env": "^10.0.0",
-    "eslint": "^9.10.0",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-import-resolver-typescript": "^4.0.0",
     "eslint-plugin-deprecation": "^3.0.0",
